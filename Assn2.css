@@ -1,0 +1,625 @@
+/* ========== RESET & VARIABLES ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #1e3a5f;
+  --accent: #2f80ed;
+  --accent-dark: #1b64c4;
+  --text: #2d3748;
+  --muted: #718096;
+  --bg: #f4f6f9;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: "Segoe UI", Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.hidden-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.logo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffffff;
+    text-decoration: none;
+    letter-spacing: 1px;
+    display: inline-block;
+}
+
+.logo span {
+    color: #60a5fa;
+    font-family: 'Great Vibes', cursive;
+    font-size: 48px;
+}
+
+
+/* ========== ASSIGNMENT 6: RESPONSIVE MENU ========== */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.logo {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.logo span {
+  color: var(--accent);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 8px;
+}
+
+.nav-links a {
+  display: block;
+  color: #d6e4f7;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+/* Hamburger button (hidden on large screens) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  border-radius: 2px;
+  background-color: #fff;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Hamburger turns into an X when the menu is open */
+#menu-toggle:checked ~ .navbar .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+#menu-toggle:checked ~ .navbar .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked ~ .navbar .hamburger span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Highlight the current page's link */
+body:not(:has(.page:target)) .nav-links a[href="#home"],
+body:has(#home:target)     .nav-links a[href="#home"],
+body:has(#login:target)    .nav-links a[href="#login"],
+body:has(#forgot:target)   .nav-links a[href="#login"],
+body:has(#signup:target)   .nav-links a[href="#login"],
+body:has(#products:target) .nav-links a[href="#products"] {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* ========== SEPARATE "PAGES" (pure CSS :target) ========== */
+.page {
+  display: none;
+  flex: 1;
+  scroll-margin-top: 70px; /* keeps heading below the sticky menu */
+}
+
+.page:target {
+  display: block;
+}
+
+body:not(:has(.page:target)) #home {
+  display: block;
+}
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  background: linear-gradient(135deg, var(--primary), #2a5298);
+  color: #fff;
+  text-align: center;
+  padding: 50px 0 54px;
+}
+
+.page-header h1 {
+  font-size: 2.3rem;
+  margin-bottom: 6px;
+}
+
+.page-header p {
+  color: #d6e4f7;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+}
+
+.btn-full {
+  display: block;
+  width: 100%;
+}
+
+.btn-small {
+  padding: 8px 16px;
+  font-size: 0.88rem;
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.btn-small:hover {
+  background-color: var(--accent-dark);
+}
+
+.login-box input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-box input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.2);
+}
+
+/* ========== ASSIGNMENT 5: PROFILE CARD PROJECT ========== */
+.profile-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  padding-top: 40px;
+  padding-bottom: 20px;
+}
+
+.profile-card {
+  flex: 0 0 320px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-top: 6px solid var(--accent);
+  border-radius: 16px;
+  padding: 30px 26px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.2);
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  border: 4px solid var(--accent);
+  background: linear-gradient(135deg, var(--accent), var(--primary));
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card h2 {
+  font-size: 1.4rem;
+}
+
+.role {
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.bio {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 18px;
+}
+
+.stats {
+  display: flex;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 0;
+  margin-bottom: 20px;
+}
+
+.stats div {
+  flex: 1;
+}
+
+.stats strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.stats span {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+
+.panel {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: var(--shadow);
+}
+
+.about-panel {
+  flex: 1;
+}
+
+.panel h3 {
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.mt {
+  margin-top: 22px;
+}
+
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skills li {
+  background-color: rgba(47, 128, 237, 0.12);
+  color: var(--accent);
+  border: 1px solid rgba(47, 128, 237, 0.35);
+  border-radius: 20px;
+  padding: 5px 15px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.contact-list {
+  list-style: none;
+}
+
+.contact-list li {
+  padding: 4px 0;
+}
+
+.contact-list a {
+  color: var(--accent);
+}
+
+.contact-list a:hover {
+  text-decoration: underline;
+}
+
+/* ========== ASSIGNMENT 7: CENTERED LOGIN PAGE ========== */
+.login-wrapper {
+  min-height: calc(100vh - 130px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+  background: linear-gradient(135deg, #e8f0fe, #f4f6f9);
+}
+
+.login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 36px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.login-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background-color: rgba(47, 128, 237, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.login-box h2 {
+  text-align: center;
+  color: var(--primary);
+}
+
+.login-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 22px;
+}
+
+.login-box > label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.login-box input[type="email"]:focus,
+.login-box input[type="password"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.2);
+}
+
+.login-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.forgot,
+.signup a {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.forgot:hover,
+.signup a:hover {
+  text-decoration: underline;
+}
+
+.signup {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-top: 18px;
+}
+
+/* ========== ASSIGNMENT 8: PRODUCT LISTING (CSS GRID) ========== */
+.section {
+  padding: 40px 0 10px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+}
+
+.product-img {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+.bg-1 { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.bg-2 { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+.bg-3 { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.bg-4 { background: linear-gradient(135deg, #fce7f3, #fbcfe8); }
+.bg-5 { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+.bg-6 { background: linear-gradient(135deg, #ffedd5, #fed7aa); }
+
+.product-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+}
+
+.badge {
+  align-self: flex-start;
+  background-color: #fde68a;
+  color: #7a5200;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.badge-new  { background-color: #bbf7d0; color: #14532d; }
+.badge-sale { background-color: #fecaca; color: #7f1d1d; }
+
+.product-body h3 {
+  color: var(--primary);
+  margin-bottom: 4px;
+}
+
+.product-desc {
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.product-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  margin-top: 50px;
+  background-color: var(--primary);
+  color: #bcd4f5;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.88rem;
+}
+
+/* ========== RESPONSIVE (MEDIA QUERIES) ========== */
+@media (max-width: 800px) {
+  /* Profile card stacks above the about panel */
+  .profile-layout {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .profile-card {
+    flex: none;
+    max-width: 380px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 700px) {
+  /* Menu collapses into a hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-inner {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 4px;
+    padding-top: 10px;
+  }
+
+  #menu-toggle:checked ~ .navbar .nav-links {
+    display: flex;
+  }
+
+  .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .login-wrapper {
+    min-height: calc(100vh - 80px);
+  }
+}

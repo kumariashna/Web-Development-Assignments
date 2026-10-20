@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ashna Kumari | CSS Layout & Responsive Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Assn2.css">
+</head>
+<body>
+
+  <!-- Hidden checkbox that controls the mobile menu (no JavaScript) -->
+  <input type="checkbox" id="menu-toggle" class="hidden-input">
+
+  <!-- ===== ASSIGNMENT 6: RESPONSIVE MENU ===== -->
+  <nav class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">AK<span>.</span></a>
+
+      <label for="menu-toggle" class="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="nav-links">
+        <li><a href="#home" target="_blank">Profile Card</a></li>
+        <li><a href="#login" target="_blank">Login</a></li>
+        <li><a href="#products" target="_blank">Products</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ PAGE 1: PROFILE CARD PROJECT (Assignment 5) ============ -->
+  <div class="page" id="home">
+    <header class="page-header">
+      <div class="container">
+        <h1>Profile Card Project</h1>
+       
+      </div>
+    </header>
+
+    <main class="container profile-layout">
+
+      <article class="profile-card">
+        <!-- <div class="avatar">YN</div> -->
+        <div class="avatar">
+    <span class="a">A</span><span class="k">K</span>
+</div>
+        <h2>Ashna Kumari</h2>
+        <p class="role">Front-End Developer (Learner)</p>
+        <p class="bio"> I build clean, well-structured web pages. This project shows my
+          understanding of CSS basics and the box model, from styling a page
+          to building cards and landing sections.</p>
+
+        <div class="stats">
+          <div><strong>5</strong><span>Projects</span></div>
+          <div><strong>3</strong><span>Languages</span></div>
+          <div><strong>100+</strong><span>Commits</span></div>
+        </div>
+
+        <a href="https://github.com/kumariashna" target="_blank" rel="noopener" class="btn btn-primary btn-full">View GitHub</a>
+      </article>
+
+      <section class="panel about-panel">
+        <h3>About Me</h3>
+        <p>
+          Motivated student learning front-end development. I enjoy building
+          layouts with Flexbox and Grid that look good on every screen size.
+        </p>
+
+        <h3 class="mt">Skills</h3>
+        <ul class="skills">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Python</li>
+          <li>Power BI</li>
+          <li>Java</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+
+        <h3 class="mt">Contact</h3>
+        <ul class="contact-list">
+          <li>📧 <a href="mailto:your.email@example.com">kumariashna272@gmail.com</a></li>
+          <li>📍 Jharkhand, India</li>
+          <li>💻 <a href="https://github.com/kumariashna" target="_blank" rel="noopener">github.com/kumariashna</a></li>
+        </ul>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ============ PAGE 2: CENTERED LOGIN PAGE (Assignment 7) ============ -->
+  <div class="page" id="login">
+    <main class="login-wrapper">
+      <form class="login-box" action="#login">
+        <div class="login-icon">🔐</div>
+        <h2>Welcome Back</h2>
+        <p class="login-sub">Please log in to your account</p>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+
+        <div class="login-row">
+          <label class="remember">
+            <input type="checkbox"> Remember me
+          </label>
+          <a href="#forgot" class="forgot">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Log In</button>
+        <p class="signup">Don't have an account? <a href="#signup">Sign up</a></p>
+       
+      </form>
+    </main>
+  </div>
+
+  <!-- ============ FORGOT PASSWORD PAGE ============ -->
+  <div class="page" id="forgot">
+    <main class="login-wrapper">
+      <form class="login-box" action="#login">
+        <div class="login-icon">🔑</div>
+        <h2>Forgot Password?</h2>
+        <p class="login-sub">Enter your email and we'll send you a reset link</p>
+
+        <label for="forgot-email">Email</label>
+        <input type="email" id="forgot-email" placeholder="you@example.com" required>
+
+        <button type="submit" class="btn btn-primary btn-full">Send Reset Link</button>
+
+        <p class="signup"><a href="#login">← Back to Login</a></p>
+      </form>
+    </main>
+  </div>
+
+  <!-- ============ SIGN UP PAGE ============ -->
+  <div class="page" id="signup">
+    <main class="login-wrapper">
+      <form class="login-box" action="#login">
+        <div class="login-icon">📝</div>
+        <h2>Create Account</h2>
+        <p class="login-sub">Sign up to get started</p>
+
+        <label for="su-name">Full Name</label>
+        <input type="text" id="su-name" placeholder="Your name" required>
+
+        <label for="su-email">Email</label>
+        <input type="email" id="su-email" placeholder="you@example.com" required>
+
+        <label for="su-pass">Password</label>
+        <input type="password" id="su-pass" placeholder="Create a password" required>
+
+        <button type="submit" class="btn btn-primary btn-full">Sign Up</button>
+
+        <p class="signup">Already have an account? <a href="#login">Log in</a></p>
+      </form>
+    </main>
+  </div>
+
+  <!-- ============ PAGE 3: PRODUCT LISTING LAYOUT (Assignment 8) ============ -->
+  <div class="page" id="products">
+    <header class="page-header">
+      <div class="container">
+        <h1>Our Products</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="section">
+        <div class="product-grid">
+
+          <article class="product">
+            <div class="product-img bg-1">🎧</div>
+            <div class="product-body">
+              <span class="badge">Bestseller</span>
+              <h3>Wireless Headphones</h3>
+              <p class="product-desc">Comfortable over-ear sound with long battery life.</p>
+              <div class="product-footer">
+                <span class="price">₹1,999</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-img bg-2">⌚</div>
+            <div class="product-body">
+              <span class="badge badge-new">New</span>
+              <h3>Smart Watch</h3>
+              <p class="product-desc">Track steps, sleep and notifications on your wrist.</p>
+              <div class="product-footer">
+                <span class="price">₹2,499</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-img bg-3">🎒</div>
+            <div class="product-body">
+              <h3>Laptop Backpack</h3>
+              <p class="product-desc">Water-resistant bag with padded laptop compartment.</p>
+              <div class="product-footer">
+                <span class="price">₹899</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-img bg-4">📷</div>
+            <div class="product-body">
+              <span class="badge badge-sale">Sale</span>
+              <h3>Instant Camera</h3>
+              <p class="product-desc">Capture and print memories in seconds.</p>
+              <div class="product-footer">
+                <span class="price">₹3,299</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-img bg-5">🖱️</div>
+            <div class="product-body">
+              <h3>Wireless Mouse</h3>
+              <p class="product-desc">Smooth, silent clicks with a comfortable grip.</p>
+              <div class="product-footer">
+                <span class="price">₹599</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product">
+            <div class="product-img bg-6">🔊</div>
+            <div class="product-body">
+              <span class="badge badge-new">New</span>
+              <h3>Bluetooth Speaker</h3>
+              <p class="product-desc">Portable speaker with deep bass and 12-hour playtime.</p>
+              <div class="product-footer">
+                <span class="price">₹1,499</span>
+                <a href="#products" class="btn btn-small">Add to Cart</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Ashna Kumari | CSS Layout &amp; Responsive Project</p>
+  </footer>
+
+</body>
+</html>
