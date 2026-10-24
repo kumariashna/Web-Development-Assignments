@@ -30,7 +30,7 @@ Assignment 3: Grids, Dashboard & Galleries (Questions 9–12)
 - Responsive web design
 - Photo Gallery and Product Grid
 
-Assignment 4: Responsive landing pages+JS intro (Questions 13–16)
+Assignment 4: Responsive landing pages + JS intro (Questions 13–16)
 
 - Web development practice
 - Student Profile and Data Types
