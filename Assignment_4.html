@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudentHub | Student Portal</title>
+    <link rel="stylesheet" href="Assignment4.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <a href="#" class="logo" onclick="showPage('home'); return false;">
+            Student<span>Hub</span>
+        </a>
+
+        <nav>
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('profile')">Student Profile</button>
+            <button onclick="showPage('calculator')">Grade Calculator</button>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Assignment 13: Landing Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <div class="hero-content">
+                    <p class="tagline">YOUR FUTURE STARTS HERE</p>
+                    <h1>Learn Today.<br>Lead Tomorrow.</h1>
+
+                    <p class="hero-text">
+                        Welcome to StudentHub, your personal space to
+                        explore your profile, calculate your grades
+                        and keep moving towards your goals.
+                    </p>
+
+                    <button class="primary-btn"
+                            onclick="showPage('profile')">
+                        Explore My Profile →
+                    </button>
+
+                    <button class="secondary-btn"
+                            onclick="showPage('calculator')">
+                        Calculate Grade
+                    </button>
+                </div>
+
+                <div class="hero-art">
+                    <div class="art-circle">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8ToVVRa7O8Zijaa3NLbcfNZbF_Qw4fdwk-_Nd-NuNzA&s=10" width="200">
+                    </div>
+                    <h3>Dream Big. Study Smart.</h3>
+                    <p>Your journey to success begins now.</p>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">👤</div>
+                    <h3>Student Profile</h3>
+                    <p>View your personal and academic information.</p>
+                    <button onclick="showPage('profile')">View Profile</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Grade Calculator</h3>
+                    <p>Calculate your percentage and grade easily.</p>
+                    <button onclick="showPage('calculator')">Calculate Now</button>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Keep Learning</h3>
+                    <p>Build skills and take the next step towards success.</p>
+                    <button onclick="showPage('profile')">Get Started</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignment 15: Student Profile and Data Types -->
+        <section id="profile" class="page">
+            <div class="section-heading">
+                <p class="tagline">GET TO KNOW ME</p>
+                <h1>Student Profile</h1>
+                <p>Your personal and academic information.</p>
+            </div>
+
+            <div class="profile-card">
+                <!-- <div class="avatar">🎓</div> -->
+                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTigxQSA8cZqoHfGItF9bLOom6sLlMPOAuPdM4ebyMDPjn_y1V4STxXV7I&s=10" width="100" alt="Student pic" class=" profile-img">
+                <h2 id="studentName">Ashna Kumari</h2>
+                <p class="course-label" id="studentCourse">BCA-AI Student</p>
+
+                <div class="profile-details">
+                    <div class="detail">
+                        <span>Age</span>
+                        <strong id="studentAge">20</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Course</span>
+                        <strong id="courseValue">BCA-AI</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Enrollment</span>
+                        <strong id="enrollmentValue">Active</strong>
+                    </div>
+
+                    <div class="detail">
+                        <span>Skills</span>
+                        <strong id="skillsValue">Java, HTML, CSS</strong>
+                    </div>
+                </div>
+
+                <button class="primary-btn" onclick="editProfile()">
+                    Edit Profile
+                </button>
+
+                <p class="note">
+                    Sample profile details can be changed using Edit Profile.
+                </p>
+            </div>
+
+            <div class="data-types">
+                <h2>JavaScript Data Types Used</h2>
+                <p>Student information is stored using different data types.</p>
+
+                <div class="type-grid">
+                    <div class="type-item">
+                        <strong>String</strong>
+                        <p id="stringType"></p>
+                    </div>
+
+                    <div class="type-item">
+                        <strong>Number</strong>
+                        <p id="numberType"></p>
+                    </div>
+
+                    <div class="type-item">
+                        <strong>Boolean</strong>
+                        <p id="booleanType"></p>
+                    </div>
+
+                    <div class="type-item">
+                        <strong>Array</strong>
+                        <p id="arrayType"></p>
+                    </div>
+
+                    <div class="type-item">
+                        <strong>Object</strong>
+                        <p id="objectType"></p>
+                    </div>
+
+                    <div class="type-item">
+                        <strong>Null</strong>
+                        <p id="nullType"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignment 16: Grade Calculator -->
+        <section id="calculator" class="page">
+            <div class="section-heading">
+                <p class="tagline">CHECK YOUR PERFORMANCE</p>
+                <h1>Grade Calculator</h1>
+                <p>Enter marks for five subjects to calculate your result.</p>
+            </div>
+
+            <div class="calculator-card">
+                <form id="gradeForm">
+                    <div class="marks-grid">
+                        <div>
+                            <label for="english">English (out of 100)</label>
+                            <input type="number" id="english"
+                                   min="0" max="100" step="any"
+                                   placeholder="Enter marks" required>
+                        </div>
+
+                        <div>
+                            <label for="maths">Mathematics (out of 100)</label>
+                            <input type="number" id="maths"
+                                   min="0" max="100" step="any"
+                                   placeholder="Enter marks" required>
+                        </div>
+
+                        <div>
+                            <label for="computer">Computer (out of 100)</label>
+                            <input type="number" id="computer"
+                                   min="0" max="100" step="any"
+                                   placeholder="Enter marks" required>
+                        </div>
+
+                        <div>
+                            <label for="science">Science (out of 100)</label>
+                            <input type="number" id="science"
+                                   min="0" max="100" step="any"
+                                   placeholder="Enter marks" required>
+                        </div>
+
+                        <div>
+                            <label for="hindi">Hindi (out of 100)</label>
+                            <input type="number" id="hindi"
+                                   min="0" max="100" step="any"
+                                   placeholder="Enter marks" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+                        Calculate Result
+                    </button>
+
+                    <button type="reset" class="secondary-btn">
+                        Clear Marks
+                    </button>
+                </form>
+
+                <p id="errorMessage" class="error-message"></p>
+
+                <div id="resultCard" class="result-card" aria-live="polite">
+                    <h2>Your Result</h2>
+
+                    <div class="result-grid">
+                        <div class="result-item">
+                            <span>Total Marks</span>
+                            <strong id="totalMarks">0 / 500</strong>
+                        </div>
+
+                        <div class="result-item">
+                            <span>Percentage</span>
+                            <strong id="percentage">0%</strong>
+                        </div>
+
+                        <div class="result-item">
+                            <span>Grade</span>
+                            <strong id="grade">-</strong>
+                        </div>
+                    </div>
+
+                    <p id="passStatus" class="pass-status"></p>
+                </div>
+
+                <p class="note">
+                    Grade rules: A+ = 90% and above, A = 80–89%,
+                    B = 70–79%, C = 60–69%, D = 40–59%,
+                    F = below 40%. Passing requires at least 33 marks
+                    in every subject.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 StudentHub | Learn • Grow • Succeed</p>
+    </footer>
+
+    <script>
+        // Navigation: show only the selected page
+        function showPage(pageId) {
+            let pages = document.querySelectorAll(".page");
+
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            document.getElementById(pageId).classList.add("active");
+            window.scrollTo(0, 0);
+        }
+
+        // Assignment 15: Variables of different data types
+        let studentName = "Ashna Kumari";     // String
+        let age = 20;                         // Number
+        let course = "BCA";                   // String
+        let isEnrolled = true;                // Boolean
+        let skills = ["Java", "HTML", "CSS"]; // Array
+        let student = { name: studentName, course: course }; // Object
+        let graduationYear = null;            // Null
+
+        function updateProfile() {
+            document.getElementById("studentName").innerText = studentName;
+            document.getElementById("studentAge").innerText = age;
+            document.getElementById("studentCourse").innerText = course + " Student";
+            document.getElementById("courseValue").innerText = course;
+            document.getElementById("enrollmentValue").innerText =
+                isEnrolled ? "Active" : "Inactive";
+            document.getElementById("skillsValue").innerText =
+                skills.join(", ");
+
+            document.getElementById("stringType").innerText =
+                studentName + " (" + typeof studentName + ")";
+            document.getElementById("numberType").innerText =
+                age + " (" + typeof age + ")";
+            document.getElementById("booleanType").innerText =
+                isEnrolled + " (" + typeof isEnrolled + ")";
+            document.getElementById("arrayType").innerText =
+                JSON.stringify(skills) + " (Array)";
+            document.getElementById("objectType").innerText =
+                JSON.stringify(student) + " (Object)";
+            document.getElementById("nullType").innerText =
+                graduationYear + " (null)";
+        }
+
+        function editProfile() {
+            let newName = prompt("Enter your name:", studentName);
+
+            if (newName !== null && newName.trim() !== "") {
+                studentName = newName.trim();
+                student.name = studentName;
+                updateProfile();
+            }
+
+            let newAge = prompt("Enter your age:", age);
+
+            if (newAge !== null && newAge.trim() !== "") {
+                let parsedAge = Number(newAge);
+
+                if (Number.isInteger(parsedAge) &&
+                    parsedAge > 0 && parsedAge <= 120) {
+                    age = parsedAge;
+                    updateProfile();
+                } else {
+                    alert("Please enter a valid age.");
+                }
+            }
+        }
+
+        updateProfile();
+
+        // Assignment 16: Grade calculator using conditional statements
+        const gradeForm = document.getElementById("gradeForm");
+
+        gradeForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let fields = [
+                "english", "maths", "computer", "science", "hindi"
+            ];
+
+            let marks = fields.map(function(id) {
+                return Number(document.getElementById(id).value);
+            });
+
+            let errorMessage = document.getElementById("errorMessage");
+            let resultCard = document.getElementById("resultCard");
+
+            errorMessage.innerText = "";
+            resultCard.style.display = "none";
+
+            for (let i = 0; i < fields.length; i++) {
+                let input = document.getElementById(fields[i]);
+
+                if (input.value.trim() === "" ||
+                    marks[i] < 0 || marks[i] > 100) {
+                    errorMessage.innerText =
+                        "Please enter marks between 0 and 100 for every subject.";
+                    return;
+                }
+            }
+
+            let total = marks.reduce(function(sum, mark) {
+                return sum + mark;
+            }, 0);
+
+            let percentage = total / 5;
+            let grade;
+
+            if (percentage >= 90) {
+                grade = "A+";
+            } else if (percentage >= 80) {
+                grade = "A";
+            } else if (percentage >= 70) {
+                grade = "B";
+            } else if (percentage >= 60) {
+                grade = "C";
+            } else if (percentage >= 40) {
+                grade = "D";
+            } else {
+                grade = "F";
+            }
+
+            let passed = marks.every(function(mark) {
+                return mark >= 33;
+            });
+
+            document.getElementById("totalMarks").innerText =
+                total + " / 500";
+
+            document.getElementById("percentage").innerText =
+                percentage.toFixed(2) + "%";
+
+            document.getElementById("grade").innerText = grade;
+
+            document.getElementById("passStatus").innerText =
+                passed ? "Congratulations! You have passed." :
+                         "You have failed. Score at least 33 in every subject.";
+
+            document.getElementById("passStatus").className =
+                passed ? "pass-status passed" : "pass-status failed";
+
+            resultCard.style.display = "block";
+        });
+
+        gradeForm.addEventListener("reset", function() {
+            document.getElementById("errorMessage").innerText = "";
+            document.getElementById("resultCard").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

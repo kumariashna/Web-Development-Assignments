@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploreHub</title>
+    <link rel="stylesheet" href="Assignment3.css">
+</head>
+<body>
+
+<header>
+    <h2 class="logo">Explore<span>Hub</span></h2>
+
+    <nav>
+        <a href="#home" onclick="showPage('home', this); return false;" class="active">Home</a>
+        <a href="#dashboard" onclick="showPage('dashboard', this); return false;">Dashboard</a>
+        <a href="#gallery" onclick="showPage('gallery', this); return false;">Gallery</a>
+        <a href="#products" onclick="showPage('products', this); return false;">Products</a>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page-content active">
+        <div class="hero">
+            <div class="hero-text">
+                <p class="tag">WELCOME TO EXPLOREHUB</p>
+                <h1>Discover. Explore.<br>Find Your Style.</h1>
+                <p>Explore beautiful places, useful products and a simple dashboard.</p>
+                <button onclick="showPage('gallery')">Explore Gallery</button>
+                <button class="secondary" onclick="showPage('products')">View Products</button>
+            </div>
+
+            <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80"
+                 alt="Beautiful mountain landscape">
+        </div>
+    </section>
+
+    <!-- DASHBOARD PAGE -->
+    <section id="dashboard" class="page-content">
+        <div class="section-heading">
+            <p class="tag">AT A GLANCE</p>
+            <h1>Dashboard Overview</h1>
+            <p>Track your progress with these statistics.</p>
+        </div>
+
+        <div class="stats">
+            <div class="card">
+                <div class="icon">🎓</div>
+                <h2>250</h2>
+                <p>Total Students</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">🚀</div>
+                <h2>18</h2>
+                <p>Total Projects</p>
+            </div>
+
+            <div class="card">
+                <div class="icon">✅</div>
+                <h2>85%</h2>
+                <p>Tasks Completed</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY PAGE -->
+    <section id="gallery" class="page-content">
+        <div class="section-heading">
+            <p class="tag">PHOTO STORIES</p>
+            <h1>Explore the Gallery</h1>
+            <p>Beautiful views from nature.</p>
+        </div>
+
+        <div class="gallery">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=600&q=80" alt="Green valley">
+                <h3>Green Valley</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=600&q=80" alt="Mountain lake">
+                <h3>Mountain Lake</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80" alt="Mountain landscape">
+                <h3>Blue Horizon</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Snowy mountains">
+                <h3>High Peaks</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=80" alt="Green forest">
+                <h3>Forest Trail</h3>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=600&q=80" alt="Wildlife">
+                <h3>Wildlife</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS PAGE -->
+    <section id="products" class="page-content">
+        <div class="section-heading">
+            <p class="tag">OUR COLLECTION</p>
+            <h1>Featured Products</h1>
+            <p>Discover our everyday essentials.</p>
+        </div>
+
+        <div class="products">
+            <div class="card product-card">
+                <div class="product-icon">🎧</div>
+                <h3>Wireless Headphones</h3>
+                <p>Enjoy your favourite music.</p>
+                <h2>₹999</h2>
+                <button onclick="alert('Wireless Headphones')">View Item</button>
+            </div>
+
+            <div class="card product-card">
+                <div class="product-icon">⌚</div>
+                <h3>Classic Wrist Watch</h3>
+                <p>A stylish everyday accessory.</p>
+                <h2>₹1,499</h2>
+                <button onclick="alert('Classic Wrist Watch')">View Item</button>
+            </div>
+
+            <div class="card product-card">
+                <div class="product-icon">👟</div>
+                <h3>Sports Shoes</h3>
+                <p>Comfort for active days.</p>
+                <h2>₹1,999</h2>
+                <button onclick="alert('Sports Shoes')">View Item</button>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 ExploreHub </p>
+</footer>
+
+<script>
+    function showPage(pageId, clickedLink) {
+        const pages = document.querySelectorAll(".page-content");
+        const links = document.querySelectorAll("nav a");
+
+        pages.forEach(function(page) {
+            page.classList.remove("active");
+        });
+
+        links.forEach(function(link) {
+            link.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+
+        if (clickedLink) {
+            clickedLink.classList.add("active");
+        } else {
+            const matchingLink = document.querySelector(
+                'nav a[href="#' + pageId + '"]'
+            );
+            if (matchingLink) {
+                matchingLink.classList.add("active");
+            }
+        }
+
+        window.scrollTo(0, 0);
+    }
+</script>
+
+</body>
+</html>
