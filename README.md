@@ -40,6 +40,19 @@ Technologies Used
 
 HTML5, CSS3, JavaScript
 
+Assignment 5: JavaScript Practice Hub (Questions 17–20)
+
+- Loop-Based Problems
+- JavaScript Debugging
+- Multiplication Table and Even/Odd Checker
+- Mathematical Functions
+
+Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+
 Purpose
 
 To practice web development concepts and maintain my regular class assignments in one GitHub repository.
