@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice Hub</title>
+    <link rel="stylesheet" href="Assignment5.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h2>JS Practice Hub</h2>
+
+            <div class="nav-links">
+                <button onclick="showPage('home')">Home</button>
+                <button onclick="showPage('a17')">Loop</button>
+                <button onclick="showPage('a18')">Debugging</button>
+                <button onclick="showPage('a19')">Mini Projects</button>
+                <button onclick="showPage('a20')">Utilities</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Welcome to JavaScript Practice Hub</h1>
+                <p>Select an assignment to get started.</p>
+            </div>
+
+            <div class="cards">
+                <div class="home-card" onclick="showPage('a17')">
+                    <!-- <h2>Assignment 17</h2> -->
+                    <p>Practice basic JavaScript loops with these examples</p>
+                </div>
+
+                <div class="home-card" onclick="showPage('a18')">
+                    <!-- <h2>Assignment 18</h2> -->
+                    <p>JavaScript Debugging</p>
+                </div>
+
+                <div class="home-card" onclick="showPage('a19')">
+                    <!-- <h2>Assignment 19</h2> -->
+                    <p>JavaScript Mini Projects</p>
+                </div>
+
+                <div class="home-card" onclick="showPage('a20')">
+                    <!-- <h2>Assignment 20</h2> -->
+                    <p>Mathematical Functions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Assignment 17 -->
+        <section id="a17" class="page">
+            <div class="hero">
+                <h1>Assignment 17</h1>
+                <p>Beginner Loop-Based Coding Problems</p>
+            </div>
+
+            <div class="card">
+                <h2>Print Numbers from 1 to 10</h2>
+                <button onclick="printNumbers()">Show Numbers</button>
+                <p id="numbersOutput" class="output"></p>
+            </div>
+
+            <div class="card">
+                <h2>Multiplication Table</h2>
+                <input type="number" id="loopNumber"
+                       placeholder="Enter a number">
+                <button onclick="showTable()">Generate Table</button>
+                <p id="tableOutput" class="output"></p>
+            </div>
+        </section>
+
+        <!-- Assignment 18 -->
+        <section id="a18" class="page">
+            <div class="hero">
+                <h1>Assignment 18</h1>
+                <p>Debugging JavaScript</p>
+            </div>
+
+            <div class="card">
+                <h2>Fix the Addition Bug</h2>
+                <p>Problem: This code should add two numbers, but the result is incorrect.</p>
+                <p>Original code:</p>
+
+                <pre><code>let a = "10";
+let b = 5;
+let result = a + b;</code></pre>
+            <p>Bug: The + operator joins the string and number instead of adding them numerically</p>
+                <p>The correct result is "105" because one value is a string.</p>
+
+                <button onclick="fixBug()">Show Correct Result</button>
+                <p id="debugOutput" class="output"></p>
+            </div>
+        </section>
+
+        <!-- Assignment 19 -->
+        <section id="a19" class="page">
+            <div class="hero">
+                <h1>Assignment 19</h1>
+                <p>JavaScript Mini Projects</p>
+            </div>
+
+            <div class="card">
+                <h2>Project 1: Multiplication Table</h2>
+                <p>Generate a multiplication table for any number.</p>
+                <input type="number" id="projectNumber"
+                       placeholder="Enter a number">
+                <button onclick="generateTable()">Generate Table</button>
+                <p id="projectTableOutput" class="output"></p>
+            </div>
+
+            <div class="card">
+                <h2>Project 2: Even or Odd Checker</h2>
+                <p>Check whether a number is even or odd.</p>
+                <input type="number" id="checkNumber"
+                       placeholder="Enter a number">
+                <button onclick="checkEvenOdd()">Check Number</button>
+                <p id="evenOddOutput" class="output"></p>
+            </div>
+        </section>
+
+        <!-- Assignment 20 -->
+        <section id="a20" class="page">
+            <div class="hero">
+                <h1>Assignment 20</h1>
+                <p>Five Mathematical Functions</p>
+               
+            </div>
+
+            <div class="card">
+                <h2>Math Calculator</h2>
+
+                <label for="firstNumber">First Number</label>
+                <input type="number" id="firstNumber" value="10">
+
+                <label for="secondNumber">Second Number</label>
+                <input type="number" id="secondNumber" value="5">
+
+                <label for="operation">Choose Operation</label>
+                <select id="operation">
+                    <option value="add">Addition</option>
+                    <option value="subtract">Subtraction</option>
+                    <option value="multiply">Multiplication</option>
+                    <option value="divide">Division</option>
+                    <option value="square">Square of First Number</option>
+                </select>
+
+                <button onclick="calculate()">Calculate</button>
+                <p id="mathOutput" class="output"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>JavaScript Practice Hub | Regular Class Assignments</p>
+    </footer>
+
+    <script>
+        // Show selected page
+        function showPage(pageId) {
+            let pages = document.querySelectorAll(".page");
+
+            pages.forEach(function(page) {
+                page.classList.remove("active");
+            });
+
+            document.getElementById(pageId).classList.add("active");
+            window.scrollTo(0, 0);
+        }
+
+        // Assignment 17: Print numbers
+        function printNumbers() {
+            let result = "";
+
+            for (let i = 1; i <= 10; i++) {
+                result += i + " ";
+            }
+
+            document.getElementById("numbersOutput").textContent = result;
+        }
+
+        // Assignment 17: Multiplication table
+        function showTable() {
+            let input = document.getElementById("loopNumber");
+            let output = document.getElementById("tableOutput");
+
+            if (input.value.trim() === "") {
+                output.textContent = "Please enter a number.";
+                return;
+            }
+
+            let n = Number(input.value);
+            let result = "";
+
+            for (let i = 1; i <= 10; i++) {
+                result += n + " x " + i + " = " + (n * i) + "\n";
+            }
+
+            output.textContent = result;
+        }
+
+        // Assignment 18: Fix addition bug
+        function fixBug() {
+            let a = "10";
+            let b = 5;
+            let result = Number(a) + b;
+
+            document.getElementById("debugOutput").textContent =
+                "Correct result: " + result;
+        }
+
+        // Assignment 19: Multiplication table
+        function generateTable() {
+            let input = document.getElementById("projectNumber");
+            let output = document.getElementById("projectTableOutput");
+
+            if (input.value.trim() === "") {
+                output.textContent = "Please enter a number.";
+                return;
+            }
+
+            let n = Number(input.value);
+            let result = "";
+
+            for (let i = 1; i <= 10; i++) {
+                result += n + " x " + i + " = " + (n * i) + "\n";
+            }
+
+            output.textContent = result;
+        }
+
+        // Assignment 19: Even or odd
+        function checkEvenOdd() {
+            let input = document.getElementById("checkNumber");
+            let output = document.getElementById("evenOddOutput");
+
+            if (input.value.trim() === "") {
+                output.textContent = "Please enter a number.";
+                return;
+            }
+
+            let n = Number(input.value);
+
+            if (n % 2 === 0) {
+                output.textContent = n + " is an Even Number.";
+            } else {
+                output.textContent = n + " is an Odd Number.";
+            }
+        }
+
+        // Assignment 20: Mathematical functions
+        function add(a, b) {
+            return a + b;
+        }
+
+        function subtract(a, b) {
+            return a - b;
+        }
+
+        function multiply(a, b) {
+            return a * b;
+        }
+
+        function divide(a, b) {
+            if (b === 0) {
+                return "Cannot divide by zero.";
+            }
+
+            return a / b;
+        }
+
+        function square(a) {
+            return a * a;
+        }
+
+        function calculate() {
+            let a = Number(document.getElementById("firstNumber").value);
+            let b = Number(document.getElementById("secondNumber").value);
+            let operation = document.getElementById("operation").value;
+            let result;
+
+            if (operation === "add") {
+                result = add(a, b);
+            } else if (operation === "subtract") {
+                result = subtract(a, b);
+            } else if (operation === "multiply") {
+                result = multiply(a, b);
+            } else if (operation === "divide") {
+                result = divide(a, b);
+            } else {
+                result = square(a);
+            }
+
+            document.getElementById("mathOutput").textContent =
+                "Result: " + result;
+        }
+    </script>
+
+</body>
+</html>
