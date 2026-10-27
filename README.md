@@ -36,9 +36,12 @@ Assignment 4: Responsive landing pages + JS intro (Questions 13–16)
 - Student Profile and Data Types
 - Grade Calculator
 
+
 Technologies Used
 
-HTML5, CSS3, JavaScript
+- HTML5
+- CSS3
+- JavaScript
 
 Assignment 5: JavaScript Practice Hub (Questions 17–20)
 
@@ -47,11 +50,25 @@ Assignment 5: JavaScript Practice Hub (Questions 17–20)
 - Multiplication Table and Even/Odd Checker
 - Mathematical Functions
 
+  Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+
+  Assignment 6: JavaScript Utility Toolkit (Questions 21–24)
+
+- Scope and Hoisting
+- Input Validation
+- Settings Merging and Total Calculator
+- Test Cases and Reflection
+
 Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
+
 
 Purpose
 
