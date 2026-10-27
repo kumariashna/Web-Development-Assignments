@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Utility Toolkit</title>
+    <link rel="stylesheet" href="Assignment_6.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <header>
+            <h1>JavaScript Utility Toolkit</h1>
+            <p>Combined Assignment 21–24</p>
+        </header>
+
+        <!-- Assignment 21 -->
+        <section class="card">
+            <h2>1. Scope and Hoisting</h2>
+            <p>Understand var, let and const.</p>
+
+            <button onclick="showScope()">Check Scope</button>
+            <div id="scopeResult" class="result">
+                Click the button to see the result.
+            </div>
+        </section>
+
+        <!-- Assignment 22 -->
+        <section class="card">
+            <h2>2. Validation Utility</h2>
+
+            <label for="username">Username</label>
+            <input type="text" id="username"
+                   placeholder="Enter username">
+
+            <label for="email">Email</label>
+            <input type="text" id="email"
+                   placeholder="Enter email">
+
+            <button onclick="validateForm()">Validate</button>
+            <div id="validationResult" class="result"></div>
+        </section>
+
+        <!-- Assignment 23 -->
+        <section class="card">
+            <h2>3. Settings and Total Calculator</h2>
+
+            <label for="price">Product Price (₹)</label>
+            <input type="number" id="price"
+                   placeholder="Enter price">
+
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity"
+                   placeholder="Enter quantity">
+
+            <button onclick="calculateTotal()">Calculate Total</button>
+            <div id="totalResult" class="result"></div>
+
+            <button class="secondary" onclick="showSettings()">
+                Show Merged Settings
+            </button>
+            <div id="settingsResult" class="result"></div>
+        </section>
+
+        <!-- Assignment 24 -->
+        <section class="card">
+            <h2>4. Test Cases and Reflection</h2>
+
+            <button onclick="runTests()">Run Test Cases</button>
+            <div id="testResult" class="result"></div>
+
+            <h3>Reflection</h3>
+            <p>
+                This project helped me understand JavaScript scope,
+                guard clauses, input validation, object merging,
+                reusable functions and testing.
+            </p>
+        </section>
+
+        <footer>
+            <p>Created for Assignments 21–24</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Assignment 21: Scope and Hoisting
+
+        function showScope() {
+            var a = 10;
+            let b = 20;
+            const c = 30;
+
+            document.getElementById("scopeResult").innerHTML =
+                "var: " + a + "<br>" +
+                "let: " + b + "<br>" +
+                "const: " + c;
+
+            console.log("Scope checked successfully");
+        }
+
+
+        // Assignment 22: Validation Utility
+
+        function isValidUsername(username) {
+            if (!username) return false;
+            if (username.trim().length < 3) return false;
+
+            return true;
+        }
+
+        function isValidEmail(email) {
+            if (!email) return false;
+
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function validateForm() {
+            const username =
+                document.getElementById("username").value;
+
+            const email =
+                document.getElementById("email").value;
+
+            const result =
+                document.getElementById("validationResult");
+
+            if (!isValidUsername(username)) {
+                result.className = "result error";
+                result.textContent =
+                    "Username must contain at least 3 characters.";
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                result.className = "result error";
+                result.textContent =
+                    "Please enter a valid email address.";
+                return;
+            }
+
+            result.className = "result success";
+            result.textContent = "All inputs are valid!";
+        }
+
+
+        // Assignment 23: Merge Settings
+
+        function mergeSettings(defaults, custom) {
+            return { ...defaults, ...custom };
+        }
+
+        function showSettings() {
+            const defaultSettings = {
+                theme: "light",
+                language: "English",
+                notifications: true
+            };
+
+            const customSettings = {
+                theme: "dark",
+                language: "Hindi"
+            };
+
+            const settings = mergeSettings(
+                defaultSettings,
+                customSettings
+            );
+
+            document.getElementById("settingsResult").textContent =
+                JSON.stringify(settings, null, 2);
+        }
+
+
+        // Assignment 23: Calculate Total
+
+        function calculateTotal() {
+            const priceInput =
+                document.getElementById("price").value;
+
+            const quantityInput =
+                document.getElementById("quantity").value;
+
+            const result =
+                document.getElementById("totalResult");
+
+            if (priceInput === "" || quantityInput === "") {
+                result.className = "result error";
+                result.textContent =
+                    "Please enter price and quantity.";
+                return;
+            }
+
+            const price = Number(priceInput);
+            const quantity = Number(quantityInput);
+
+            if (!Number.isFinite(price) || price < 0 ||
+                !Number.isInteger(quantity) || quantity < 1) {
+                result.className = "result error";
+                result.textContent =
+                    "Enter a valid price and a whole quantity of at least 1.";
+                return;
+            }
+
+            const total = price * quantity;
+
+            result.className = "result success";
+            result.textContent =
+                "Total Amount: ₹" + total.toFixed(2);
+        }
+
+
+        // Assignment 24: Test Cases
+
+        function runTests() {
+            const tests = [
+                {
+                    name: "Valid username",
+                    passed: isValidUsername("Ashna")
+                },
+                {
+                    name: "Short username rejected",
+                    passed: !isValidUsername("Ab")
+                },
+                {
+                    name: "Valid email",
+                    passed: isValidEmail("test@example.com")
+                },
+                {
+                    name: "Invalid email rejected",
+                    passed: !isValidEmail("invalid-email")
+                },
+                {
+                    name: "Settings merge",
+                    passed: mergeSettings(
+                        { theme: "light" },
+                        { theme: "dark" }
+                    ).theme === "dark"
+                },
+                {
+                    name: "Total calculation",
+                    passed: 100 * 2 === 200
+                }
+            ];
+
+            const passed =
+                tests.filter(test => test.passed).length;
+
+            const details = tests.map(test =>
+                (test.passed ? "PASS: " : "FAIL: ") + test.name
+            ).join("\n");
+
+            const result = document.getElementById("testResult");
+
+            result.className = "result " +
+                (passed === tests.length ? "success" : "error");
+
+            result.style.whiteSpace = "pre-line";
+
+            result.textContent =
+                passed + "/" + tests.length +
+                " tests passed\n\n" + details;
+        }
+    </script>
+
+</body>
+</html>

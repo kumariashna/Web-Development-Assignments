@@ -1,0 +1,138 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+header {
+    background: linear-gradient(135deg, #1565c0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+.card {
+    background-color: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: #1565c0;
+    margin-bottom: 12px;
+}
+
+.card h3 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    margin-bottom: 12px;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 11px;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: 2px solid #90caf9;
+    border-color: #1565c0;
+}
+
+button {
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    margin-top: 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: #0d47a1;
+}
+
+button.secondary {
+    background-color: #512da8;
+}
+
+button.secondary:hover {
+    background-color: #311b92;
+}
+
+.result {
+    background-color: #f5f7fa;
+    padding: 12px;
+    margin-top: 12px;
+    border-left: 4px solid #1565c0;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+
+.success {
+    color: #16743b;
+}
+
+.error {
+    color: #c62828;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 94%;
+        margin: 15px auto;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    button {
+        max-width: 100%;
+    }
+}
