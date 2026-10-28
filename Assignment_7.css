@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+header {
+    background: linear-gradient(135deg, #1565c0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+.card {
+    background-color: white;
+    padding: 22px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: #1565c0;
+    margin-bottom: 15px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    background-color: #1565c0;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    margin-top: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0d47a1;
+}
+
+.result {
+    background-color: #f5f7fa;
+    padding: 12px;
+    margin-top: 12px;
+    border-left: 4px solid #1565c0;
+    border-radius: 5px;
+    overflow-wrap: anywhere;
+}
+
+#shoppingList {
+    list-style: none;
+    margin-top: 15px;
+}
+
+#shoppingList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #f5f7fa;
+    border-radius: 5px;
+}
+
+#shoppingList li span {
+    overflow-wrap: anywhere;
+}
+
+#shoppingList button {
+    background-color: #d32f2f;
+    margin-top: 0;
+    flex-shrink: 0;
+}
+
+#shoppingList button:hover {
+    background-color: #b71c1c;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 94%;
+        margin: 15px auto;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+}

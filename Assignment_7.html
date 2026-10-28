@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrays & Strings Toolkit</title>
+    <link rel="stylesheet" href="Assignment_7.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Arrays & Strings Toolkit</h1>
+            <p>Combined Assignment 25–28</p>
+        </header>
+
+        <!-- Assignment 25 -->
+        <section class="card">
+            <h2>1. Shopping List Manager</h2>
+
+            <input type="text" id="itemInput"
+                   placeholder="Enter shopping item">
+
+            <button onclick="addItem()">Add Item</button>
+            <ul id="shoppingList"></ul>
+        </section>
+
+        <!-- Assignment 26 -->
+        <section class="card">
+            <h2>2. Product Dataset</h2>
+
+            <input type="number" id="maxPrice"
+                   placeholder="Enter maximum price">
+
+            <button onclick="filterProducts()">Filter Products</button>
+            <div id="productResult" class="result"></div>
+        </section>
+
+        <!-- Assignment 27 -->
+        <section class="card">
+            <h2>3. Text Cleaning Utility</h2>
+
+            <textarea id="textInput"
+                      placeholder="Enter text to clean"></textarea>
+
+            <button onclick="cleanText()">Clean Text</button>
+            <div id="cleanResult" class="result"></div>
+        </section>
+
+        <!-- Assignment 28 -->
+        <section class="card">
+            <h2>4. Arrays & Strings Problems</h2>
+
+            <input type="text" id="arrayInput"
+                   placeholder="Enter numbers separated by commas">
+
+            <button onclick="processArray()">Process Array</button>
+            <div id="arrayResult" class="result"></div>
+
+            <input type="text" id="stringInput"
+                   placeholder="Enter a string">
+
+            <button onclick="processString()">Process String</button>
+            <div id="stringResult" class="result"></div>
+        </section>
+
+        <footer>
+            <p>Created for Assignments 25–28</p>
+        </footer>
+    </div>
+
+    <script>
+        // Assignment 25: Shopping List Manager
+
+        let shoppingItems = [];
+
+        function addItem() {
+            const input = document.getElementById("itemInput");
+            const item = input.value.trim();
+
+            if (item === "") {
+                alert("Please enter an item.");
+                return;
+            }
+
+            shoppingItems.push(item);
+            input.value = "";
+            displayItems();
+        }
+
+        function displayItems() {
+            const list = document.getElementById("shoppingList");
+            list.innerHTML = "";
+
+            shoppingItems.forEach(function(item, index) {
+                const li = document.createElement("li");
+                const span = document.createElement("span");
+                span.textContent = item;
+
+                const button = document.createElement("button");
+                button.textContent = "Delete";
+                button.onclick = function() {
+                    shoppingItems.splice(index, 1);
+                    displayItems();
+                };
+
+                li.appendChild(span);
+                li.appendChild(button);
+                list.appendChild(li);
+            });
+        }
+
+
+        // Assignment 26: Product Filtering and Summary
+
+        const products = [
+            { name: "Laptop", price: 50000 },
+            { name: "Mouse", price: 500 },
+            { name: "Keyboard", price: 1200 },
+            { name: "Monitor", price: 10000 },
+            { name: "Headphones", price: 2000 }
+        ];
+
+        function filterProducts() {
+            const value = document.getElementById("maxPrice").value;
+            const result = document.getElementById("productResult");
+
+            if (value.trim() === "" || Number(value) < 0) {
+                result.textContent = "Enter a valid maximum price.";
+                return;
+            }
+
+            const max = Number(value);
+            const filtered = products.filter(function(product) {
+                return product.price <= max;
+            });
+
+            const total = filtered.reduce(function(sum, product) {
+                return sum + product.price;
+            }, 0);
+
+            if (filtered.length === 0) {
+                result.textContent = "No products found.";
+                return;
+            }
+
+            result.innerHTML = "";
+
+            filtered.forEach(function(product) {
+                const p = document.createElement("p");
+                p.textContent = product.name + " - ₹" + product.price;
+                result.appendChild(p);
+            });
+
+            const summary = document.createElement("p");
+            summary.textContent =
+                "Products found: " + filtered.length +
+                " | Total price: ₹" + total;
+
+            result.appendChild(summary);
+        }
+
+
+        // Assignment 27: Text Cleaning Utility
+
+        function cleanText() {
+            const input = document.getElementById("textInput").value;
+            const result = document.getElementById("cleanResult");
+
+            const cleaned = input
+                .trim()
+                .replace(/\s+/g, " ");
+
+            result.textContent = cleaned === ""
+                ? "Please enter some text."
+                : "Cleaned Text: " + cleaned;
+        }
+
+
+        // Assignment 28: Array Problems
+
+        function processArray() {
+            const input = document.getElementById("arrayInput").value.trim();
+            const result = document.getElementById("arrayResult");
+
+            if (input === "") {
+                result.textContent = "Please enter some numbers.";
+                return;
+            }
+
+            const parts = input.split(",").map(function(item) {
+                return item.trim();
+            });
+
+            if (parts.some(item =>
+                item === "" || !Number.isFinite(Number(item))
+            )) {
+                result.textContent =
+                    "Enter valid numbers separated by commas.";
+                return;
+            }
+
+            const numbers = parts.map(Number);
+
+            const sum = numbers.reduce(function(total, num) {
+                return total + num;
+            }, 0);
+
+            const maximum = Math.max(...numbers);
+            const minimum = Math.min(...numbers);
+
+            result.textContent =
+                "Array: " + numbers.join(", ") +
+                "\nSum: " + sum +
+                "\nMaximum: " + maximum +
+                "\nMinimum: " + minimum;
+
+            result.style.whiteSpace = "pre-line";
+        }
+
+
+        // Assignment 28: String Problems
+
+        function processString() {
+            const input = document.getElementById("stringInput").value;
+            const result = document.getElementById("stringResult");
+
+            if (input.trim() === "") {
+                result.textContent = "Please enter a string.";
+                return;
+            }
+
+            const reversed = input.split("").reverse().join("");
+            const uppercase = input.toUpperCase();
+            const characterCount = input.length;
+
+            result.textContent =
+                "Original: " + input +
+                "\nReversed: " + reversed +
+                "\nUppercase: " + uppercase +
+                "\nCharacter Count: " + characterCount;
+
+            result.style.whiteSpace = "pre-line";
+        }
+    </script>
+
+</body>
+</html>
