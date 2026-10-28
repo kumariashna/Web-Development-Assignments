@@ -69,6 +69,18 @@ Technologies Used
 - CSS3
 - JavaScript
 
+Assignment 7: Arrays & Strings Toolkit (Questions 25–28)
+
+- Shopping List Manager
+- Product Filtering and Summary
+- Text Cleaning Utility
+- Arrays and Strings Problems
+
+Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
 
 Purpose
 
