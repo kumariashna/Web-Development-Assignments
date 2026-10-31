@@ -76,6 +76,14 @@ Assignment 7: Arrays & Strings Toolkit (Questions 25–28)
 - Text Cleaning Utility
 - Arrays and Strings Problems
 
+Assignment 8: JavaScript Object Management (Questions 29–32)
+
+- Source Code, Sample Output and Test Cases
+- Product Object with Nested Specifications
+- Shopping Cart and Quantity Validation
+- Profile Summary using Object Utilities
+
+
 Technologies Used
 
 - HTML5
