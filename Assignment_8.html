@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignments 29-32</title>
+    <link rel="stylesheet" href="Assignment_8.css">
+</head>
+<body>
+
+<header>
+    <h1>JavaScript Object Management</h1>
+   
+</header>
+
+<nav>
+    <button onclick="showPage('home')">Home</button>
+    <button onclick="showPage('a29')">Test Case</button>
+    <button onclick="showPage('a30')">Product Details</button>
+    <button onclick="showPage('a31')">Shopping Cart</button>
+    <button onclick="showPage('a32')">Profile Summary</button>
+</nav>
+
+<main>
+
+<!-- HOME PAGE -->
+
+<section id="home" class="page active">
+
+    <h2>Welcome to My Assignments</h2>
+    <p>Select an assignment to explore.</p>
+
+    <div class="cards">
+
+        <div class="card">
+           
+            <p>Source Code, Sample Output and Test Cases</p>
+            <button onclick="showPage('a29')">Open Assignment</button>
+        </div>
+
+        <div class="card">
+      
+            <p>Product Object with Nested Specifications</p>
+            <button onclick="showPage('a30')">Open Assignment</button>
+        </div>
+
+        <div class="card">
+        
+            <p>Shopping Cart and Quantity Validation</p>
+            <button onclick="showPage('a31')">Open Assignment</button>
+        </div>
+
+        <div class="card">
+          
+            <p>Profile Summary using Object Utilities</p>
+            <button onclick="showPage('a32')">Open Assignment</button>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ASSIGNMENT 29 -->
+
+<section id="a29" class="page">
+
+    <h2>Assignment 29 - Testing and Documentation</h2>
+
+    <div class="panel">
+        <h3>Project Source Code</h3>
+        <p><b>Project:</b> Product Management System</p>
+        <p><b>Technology:</b> HTML, CSS and JavaScript</p>
+        <p><b>Concepts:</b> Objects, Nested Objects, Arrays, Functions and Object Utilities.</p>
+    </div>
+
+    <div class="panel">
+        <h3>Sample Output</h3>
+        <p>Product: HP Laptop</p>
+        <p>Price: ₹50,000</p>
+        <p>Quantity: 2</p>
+        <p>Total Amount: ₹1,00,000</p>
+        <p>Status: Successfully Added</p>
+    </div>
+
+    <div class="panel">
+        <h3>Test Cases</h3>
+        <div id="testResults">
+            Click the button to run test cases.
+        </div>
+        <button onclick="runTests()">Run Test Cases</button>
+    </div>
+
+</section>
+
+
+<!-- ASSIGNMENT 30 -->
+
+<section id="a30" class="page">
+
+    <h2>Assignment 30 - Product Object</h2>
+    <p>Product object with nested specifications.</p>
+
+    <div class="product-card">
+        <div class="product-icon">💻</div>
+
+        <h3 id="productName"></h3>
+        <h2 id="productPrice"></h2>
+        <p id="productBrand"></p>
+
+        <button onclick="toggleSpecs()">View Specifications</button>
+
+        <div id="specifications" class="hidden panel"></div>
+    </div>
+
+    <div class="panel">
+        <h3>Product Object Keys</h3>
+        <p id="productKeys"></p>
+    </div>
+
+</section>
+
+
+<!-- ASSIGNMENT 31 -->
+
+<section id="a31" class="page">
+
+    <h2>Assignment 31 - Shopping Cart</h2>
+    <p>Add multiple products to your shopping cart.</p>
+
+    <div id="productList" class="cards"></div>
+
+    <div class="panel">
+        <h3>Your Shopping Cart</h3>
+
+        <div id="cartItems">Your cart is empty.</div>
+
+        <h3 id="cartTotal">Total: ₹0</h3>
+
+        <button class="danger" onclick="clearCart()">
+            Clear Cart
+        </button>
+    </div>
+
+</section>
+
+
+<!-- ASSIGNMENT 32 -->
+
+<section id="a32" class="page">
+
+    <h2>Assignment 32 - Profile Summary</h2>
+
+    <div class="panel">
+
+        <h3>Student Profile</h3>
+
+        <label>Name:</label>
+        <input type="text" id="name" value="Ashna Kumari">
+
+        <label>Course:</label>
+        <input type="text" id="course" value="BCA AI">
+
+        <label>Year:</label>
+        <input type="text" id="year" value="2nd Year">
+
+        <label>Skills:</label>
+        <input type="text" id="skills" value="Python, Java, HTML, CSS">
+
+        <button onclick="generateProfile()">Generate Summary</button>
+
+    </div>
+
+    <div class="panel">
+        <h3>Profile Summary</h3>
+        <div id="profileOutput">
+            Click Generate Summary.
+        </div>
+    </div>
+
+    <div class="panel">
+
+        <h3>JavaScript Object Utilities</h3>
+
+        <button onclick="showKeys()">Object.keys()</button>
+        <button onclick="showValues()">Object.values()</button>
+        <button onclick="showEntries()">Object.entries()</button>
+
+        <pre id="objectOutput"></pre>
+
+    </div>
+
+</section>
+
+<div class="bottom-nav">
+    <button onclick="showPage('home')">← Back to Home</button>
+</div>
+
+</main>
+
+
+<script>
+
+// PAGE NAVIGATION
+
+function showPage(pageId) {
+
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+// ASSIGNMENT 30 - PRODUCT OBJECT
+
+const product = {
+    id: 101,
+    name: "HP Laptop",
+    brand: "HP",
+    price: 50000,
+    stock: 10,
+
+    specifications: {
+        processor: "Intel Core i5",
+        ram: "16 GB",
+        storage: "512 GB SSD",
+        color: "Silver"
+    }
+};
+
+
+// Display Product Information
+
+document.getElementById("productName").innerText = product.name;
+
+document.getElementById("productPrice").innerText =
+    "₹" + product.price.toLocaleString("en-IN");
+
+document.getElementById("productBrand").innerText =
+    "Brand: " + product.brand;
+
+document.getElementById("productKeys").innerText =
+    Object.keys(product).join(", ");
+
+
+// Toggle Specifications
+
+function toggleSpecs() {
+
+    const box = document.getElementById("specifications");
+
+    if (box.classList.contains("hidden")) {
+
+        box.classList.remove("hidden");
+
+        box.innerHTML = `
+            <p>Processor: ${product.specifications.processor}</p>
+            <p>RAM: ${product.specifications.ram}</p>
+            <p>Storage: ${product.specifications.storage}</p>
+            <p>Color: ${product.specifications.color}</p>
+        `;
+
+    } else {
+
+        box.classList.add("hidden");
+
+    }
+}
+
+
+// ASSIGNMENT 31 - MULTIPLE PRODUCT SHOPPING CART
+
+const products = [
+
+    {
+        id: 1,
+        name: "HP Laptop",
+        price: 50000,
+        stock: 10,
+        icon: "💻"
+    },
+
+    {
+        id: 2,
+        name: "Smartphone",
+        price: 20000,
+        stock: 15,
+        icon: "📱"
+    },
+
+    {
+        id: 3,
+        name: "Headphones",
+        price: 2000,
+        stock: 20,
+        icon: "🎧"
+    },
+
+    {
+        id: 4,
+        name: "Smartwatch",
+        price: 5000,
+        stock: 12,
+        icon: "⌚"
+    },
+
+    {
+        id: 5,
+        name: "Keyboard",
+        price: 1500,
+        stock: 25,
+        icon: "⌨️"
+    },
+
+    {
+        id: 6,
+        name: "Mouse",
+        price: 800,
+        stock: 30,
+        icon: "🖱️"
+    },
+
+    {
+        id: 7,
+        name: "Monitor",
+        price: 12000,
+        stock: 8,
+        icon: "🖥️"
+    },
+
+    {
+        id: 8,
+        name: "Tablet",
+        price: 18000,
+        stock: 10,
+        icon: "📲"
+    }
+
+];
+
+
+// Cart Object
+
+const cart = {
+
+    items: [],
+    total: 0,
+
+    addItem(product, quantity) {
+
+        const existingItem = this.items.find(
+            item => item.id === product.id
+        );
+
+        if (existingItem) {
+
+            existingItem.quantity += quantity;
+
+        } else {
+
+            this.items.push({
+                ...product,
+                quantity: quantity
+            });
+
+        }
+
+        this.calculateTotal();
+    },
+
+    calculateTotal() {
+
+        this.total = this.items.reduce(
+            (sum, item) =>
+                sum + item.price * item.quantity,
+            0
+        );
+
+    }
+
+};
+
+
+// Display All Products
+
+function displayProducts() {
+
+    let output = "";
+
+    products.forEach(product => {
+
+        output += `
+
+            <div class="card">
+
+                <div class="product-icon">${product.icon}</div>
+
+                <h3>${product.name}</h3>
+
+                <h3>₹${product.price.toLocaleString("en-IN")}</h3>
+
+                <p>Available Stock: ${product.stock}</p>
+
+                <label>Quantity:</label>
+
+                <input
+                    type="number"
+                    id="qty-${product.id}"
+                    value="1"
+                    min="1"
+                >
+
+                <button onclick="addToCart(${product.id})">
+                    Add to Cart
+                </button>
+
+            </div>
+
+        `;
+
+    });
+
+    document.getElementById("productList").innerHTML = output;
+
+}
+
+
+// Add Product to Cart
+
+function addToCart(id) {
+
+    const selectedProduct = products.find(
+        p => p.id === id
+    );
+
+    const quantity = Number(
+        document.getElementById(`qty-${id}`).value
+    );
+
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+
+        alert("Please enter a valid quantity!");
+
+        return;
+    }
+
+    if (quantity > selectedProduct.stock) {
+
+        alert("Not enough stock available!");
+
+        return;
+    }
+
+    cart.addItem(selectedProduct, quantity);
+
+    selectedProduct.stock -= quantity;
+
+    displayProducts();
+
+    displayCart();
+
+    alert("Product added successfully!");
+
+}
+
+
+// Display Cart
+
+function displayCart() {
+
+    const cartItems = document.getElementById("cartItems");
+
+    if (cart.items.length === 0) {
+
+        cartItems.innerHTML = "Your cart is empty.";
+
+    } else {
+
+        let output = "";
+
+        cart.items.forEach((item, index) => {
+
+            output += `
+
+                <div class="cart-item">
+
+                    <h3>${item.icon} ${item.name}</h3>
+
+                    <p>Price: ₹${item.price.toLocaleString("en-IN")}</p>
+
+                    <p>Quantity: ${item.quantity}</p>
+
+                    <p>
+                        Subtotal: ₹${(item.price * item.quantity).toLocaleString("en-IN")}
+                    </p>
+
+                    <button class="danger"
+                        onclick="removeItem(${index})">
+                        Remove
+                    </button>
+
+                </div>
+
+            `;
+
+        });
+
+        cartItems.innerHTML = output;
+
+    }
+
+    document.getElementById("cartTotal").innerText =
+        "Total: ₹" + cart.total.toLocaleString("en-IN");
+
+}
+
+
+// Remove Item from Cart
+
+function removeItem(index) {
+
+    const item = cart.items[index];
+
+    const selectedProduct = products.find(
+        p => p.id === item.id
+    );
+
+    selectedProduct.stock += item.quantity;
+
+    cart.items.splice(index, 1);
+
+    cart.calculateTotal();
+
+    displayProducts();
+
+    displayCart();
+
+}
+
+
+// Clear Cart
+
+function clearCart() {
+
+    cart.items.forEach(item => {
+
+        const selectedProduct = products.find(
+            p => p.id === item.id
+        );
+
+        selectedProduct.stock += item.quantity;
+
+    });
+
+    cart.items = [];
+
+    cart.calculateTotal();
+
+    displayProducts();
+
+    displayCart();
+
+}
+
+
+// ASSIGNMENT 32 - PROFILE OBJECT UTILITIES
+
+let profile = {};
+
+
+// Generate Profile
+
+function generateProfile() {
+
+    profile = {
+
+        name: document.getElementById("name").value.trim(),
+
+        course: document.getElementById("course").value.trim(),
+
+        year: document.getElementById("year").value.trim(),
+
+        skills: document.getElementById("skills").value
+            .split(",")
+            .map(skill => skill.trim())
+            .filter(skill => skill !== "")
+
+    };
+
+
+    if (!profile.name || !profile.course || !profile.year) {
+
+        alert("Please fill all profile details!");
+
+        return;
+    }
+
+
+    let output = "";
+
+    Object.entries(profile).forEach(([key, value]) => {
+
+        output += `
+
+            <p>
+                <b>${key}:</b>
+                ${Array.isArray(value) ? value.join(", ") : value}
+            </p>
+
+        `;
+
+    });
+
+
+    document.getElementById("profileOutput").innerHTML = output;
+
+    document.getElementById("objectOutput").innerText =
+        "Profile generated successfully!";
+
+}
+
+
+// Object.keys()
+
+function showKeys() {
+
+    document.getElementById("objectOutput").innerText =
+        JSON.stringify(Object.keys(profile), null, 2);
+
+}
+
+
+// Object.values()
+
+function showValues() {
+
+    document.getElementById("objectOutput").innerText =
+        JSON.stringify(Object.values(profile), null, 2);
+
+}
+
+
+// Object.entries()
+
+function showEntries() {
+
+    document.getElementById("objectOutput").innerText =
+        JSON.stringify(Object.entries(profile), null, 2);
+
+}
+
+
+// ASSIGNMENT 29 - TEST CASES
+
+function runTests() {
+
+    const tests = [
+
+        {
+            name: "Product price is valid",
+            result: product.price > 0
+        },
+
+        {
+            name: "Nested specifications exist",
+            result: product.specifications.processor !== undefined
+        },
+
+        {
+            name: "Multiple products are available",
+            result: products.length >= 5
+        },
+
+        {
+            name: "Cart total calculation is correct",
+            result: (50000 * 2) === 100000
+        },
+
+        {
+            name: "Object.keys() works correctly",
+            result: Object.keys(product).includes("name")
+        },
+
+        {
+            name: "Quantity validation works correctly",
+            result: !Number.isInteger(1.5) || 1.5 <= 0
+        }
+
+    ];
+
+
+    let output = "";
+
+    let passed = 0;
+
+    tests.forEach(test => {
+
+        if (test.result) {
+            passed++;
+        }
+
+        output += `
+
+            <p class="${test.result ? 'success' : 'failure'}">
+
+                ${test.result ? '✔ PASS' : '✖ FAIL'}
+
+                - ${test.name}
+
+            </p>
+
+        `;
+
+    });
+
+
+    output += `<h3>${passed} / ${tests.length} Test Cases Passed</h3>`;
+
+    document.getElementById("testResults").innerHTML = output;
+
+}
+
+
+// INITIAL DISPLAY
+
+displayProducts();
+
+displayCart();
+
+generateProfile();
+
+</script>
+
+</body>
+</html>
