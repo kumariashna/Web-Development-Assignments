@@ -37,12 +37,6 @@ Assignment 4: Responsive landing pages + JS intro (Questions 13–16)
 - Grade Calculator
 
 
-Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-
 Assignment 5: JavaScript Practice Hub (Questions 17–20)
 
 - Loop-Based Problems
@@ -50,11 +44,6 @@ Assignment 5: JavaScript Practice Hub (Questions 17–20)
 - Multiplication Table and Even/Odd Checker
 - Mathematical Functions
 
-  Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
 
   Assignment 6: JavaScript Utility Toolkit (Questions 21–24)
 
@@ -63,11 +52,6 @@ Assignment 5: JavaScript Practice Hub (Questions 17–20)
 - Settings Merging and Total Calculator
 - Test Cases and Reflection
 
-Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
 
 Assignment 7: Arrays & Strings Toolkit (Questions 25–28)
 
@@ -76,6 +60,7 @@ Assignment 7: Arrays & Strings Toolkit (Questions 25–28)
 - Text Cleaning Utility
 - Arrays and Strings Problems
 
+
 Assignment 8: JavaScript Object Management (Questions 29–32)
 
 - Source Code, Sample Output and Test Cases
@@ -83,6 +68,21 @@ Assignment 8: JavaScript Object Management (Questions 29–32)
 - Shopping Cart and Quantity Validation
 - Profile Summary using Object Utilities
 
+  
+Assignment 9: JSON & DOM Basics (Questions 33–36)
+
+- Create and Validate Catalogue JSON
+- Catalogue Data, Utility Functions and Test Scenarios
+- DOM Node Relationships
+- DOM Element Selection Challenges
+  
+
+Assignment 10: DOM Manipulation & Events (Questions 37–40)
+
+- Profile Content Update without Unsafe HTML Injection
+- Accessible State Classes for Interactive Profile
+- Interactive Profile Form with Event Map
+- Reusable Card Rendering Function
 
 Technologies Used
 
