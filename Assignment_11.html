@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Reading List & To-Do Manager</title>
+    <link rel="stylesheet" href="Assignment_11.css">
+</head>
+<body>
+
+<header>
+    <h1>Dynamic Reading List & To-Do Manager</h1>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('reading')">Reading List</button>
+        <button onclick="showPage('contact')">Contact Form</button>
+        <button onclick="showPage('tests')">Validation Tests</button>
+        <button onclick="showPage('todo')">To-Do App</button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME -->
+    <section id="home" class="page active">
+        <h2>Welcome to My Project</h2>
+        <p>Explore the reading list, contact form and task manager.</p>
+
+        <div class="card-container">
+            <div class="card">
+            
+                <p>Dynamic Reading List Interface</p>
+                <button onclick="showPage('reading')">Open</button>
+            </div>
+
+            <div class="card">
+               
+                <p>Contact Form with Submission Summary</p>
+                <button onclick="showPage('contact')">Open</button>
+            </div>
+
+            <div class="card">
+              
+                <p>Validation Test Matrix</p>
+                <button onclick="showPage('tests')">Open</button>
+            </div>
+
+            <div class="card">
+              
+                <p>Complete To-Do Application</p>
+                <button onclick="showPage('todo')">Open</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 41: READING LIST -->
+    <section id="reading" class="page">
+        <h2>Dynamic Reading List</h2>
+        <p>Add books to your personal reading list.</p>
+
+        <div class="panel">
+            <h3>Add a New Book</h3>
+            <form id="bookForm">
+                <input type="text" id="bookTitle"
+                    placeholder="Enter book title" required>
+
+                <input type="text" id="bookAuthor"
+                    placeholder="Enter author name" required>
+
+                <button type="submit">Add Book</button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>My Reading List</h3>
+            <div id="bookList" class="item-list"></div>
+            <p id="bookCount"></p>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 42: CONTACT FORM -->
+    <section id="contact" class="page">
+        <h2>Contact Form</h2>
+        <p>Fill out the form to submit your information.</p>
+
+        <div class="panel">
+            <form id="contactForm">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName"
+                    placeholder="Enter your name" required>
+
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail"
+                    placeholder="Enter your email" required>
+
+                <label for="contactSubject">Subject</label>
+                <input type="text" id="contactSubject"
+                    placeholder="Enter subject" required>
+
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage"
+                    rows="4" placeholder="Write your message"
+                    required></textarea>
+
+                <button type="submit">Submit Form</button>
+                <button type="reset" class="secondary">Reset</button>
+            </form>
+        </div>
+
+        <div id="submissionSummary" class="panel" hidden>
+            <h3>Submission Summary</h3>
+            <div id="summaryContent"></div>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 43: VALIDATION TEST MATRIX -->
+    <section id="tests" class="page">
+        <h2>Form Validation Test Matrix</h2>
+        <p>Run test cases to check form validation rules.</p>
+
+        <div class="panel">
+            <h3>Validation Test Cases</h3>
+            <button onclick="runValidationTests()">Run All Tests</button>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Test Case</th>
+                            <th>Input</th>
+                            <th>Expected Result</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="testTable">
+                        <tr>
+                            <td colspan="4">Click Run All Tests to start.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="testSummary"></p>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 44: TODO APP -->
+    <section id="todo" class="page">
+        <h2>My To-Do App</h2>
+        <p>Add, edit, complete, filter and delete your tasks.</p>
+
+        <div class="panel">
+            <h3>Add a Task</h3>
+            <form id="todoForm">
+                <input type="text" id="taskInput"
+                    placeholder="Enter your task" required>
+                <button type="submit" id="taskSubmit">Add Task</button>
+                <button type="button" id="cancelEdit"
+                    class="secondary" hidden onclick="cancelTaskEdit()">
+                    Cancel Edit
+                </button>
+            </form>
+        </div>
+
+        <div class="panel">
+            <h3>Task Summary</h3>
+            <div class="stats">
+                <div class="stat">
+                    <h3 id="totalTasks">0</h3>
+                    <p>Total Tasks</p>
+                </div>
+                <div class="stat">
+                    <h3 id="completedTasks">0</h3>
+                    <p>Completed</p>
+                </div>
+                <div class="stat">
+                    <h3 id="pendingTasks">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>My Tasks</h3>
+
+            <div class="filters">
+                <button onclick="filterTasks('all')">All</button>
+                <button onclick="filterTasks('pending')">Pending</button>
+                <button onclick="filterTasks('completed')">Completed</button>
+            </div>
+
+            <div id="taskList" class="item-list"></div>
+            <p id="taskCount"></p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Dynamic Reading List & To-Do Manager | Assignments 41–44</p>
+</footer>
+
+<script>
+    // PAGE NAVIGATION
+    function showPage(pageId) {
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+        window.scrollTo(0, 0);
+    }
+
+    // ASSIGNMENT 41: DYNAMIC READING LIST
+    let books = [
+        { id: 1, title: "The Alchemist", author: "Paulo Coelho" },
+        { id: 2, title: "Wings of Fire", author: "A. P. J. Abdul Kalam" }
+    ];
+
+    function displayBooks() {
+        const bookList = document.getElementById("bookList");
+        bookList.replaceChildren();
+
+        if (books.length === 0) {
+            bookList.textContent = "Your reading list is empty.";
+        }
+
+        books.forEach(book => {
+            const item = document.createElement("div");
+            item.className = "list-item";
+
+            const details = document.createElement("div");
+            const title = document.createElement("h3");
+            title.textContent = book.title;
+
+            const author = document.createElement("p");
+            author.textContent = "Author: " + book.author;
+
+            details.append(title, author);
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+            deleteButton.addEventListener("click", () => {
+                books = books.filter(b => b.id !== book.id);
+                displayBooks();
+            });
+
+            item.append(details, deleteButton);
+            bookList.appendChild(item);
+        });
+
+        document.getElementById("bookCount").textContent =
+            "Total Books: " + books.length;
+    }
+
+    document.getElementById("bookForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const title = document.getElementById("bookTitle").value.trim();
+        const author = document.getElementById("bookAuthor").value.trim();
+
+        if (!title || !author) return;
+
+        books.push({
+            id: Date.now(),
+            title: title,
+            author: author
+        });
+
+        displayBooks();
+        this.reset();
+    });
+
+    // ASSIGNMENT 42: CONTACT FORM AND SUMMARY
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
+
+        if (!name || !email || !subject || !message) {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        const summary = document.getElementById("summaryContent");
+        summary.replaceChildren();
+
+        const details = [
+            ["Name", name],
+            ["Email", email],
+            ["Subject", subject],
+            ["Message", message]
+        ];
+
+        details.forEach(([label, value]) => {
+            const p = document.createElement("p");
+            const strong = document.createElement("strong");
+            strong.textContent = label + ": ";
+            p.append(strong, document.createTextNode(value));
+            summary.appendChild(p);
+        });
+
+        document.getElementById("submissionSummary").hidden = false;
+        this.reset();
+    });
+
+    // ASSIGNMENT 43: VALIDATION TEST MATRIX
+    function validateContact(data) {
+        return {
+            name: data.name.trim().length >= 2,
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim()),
+            subject: data.subject.trim().length > 0,
+            message: data.message.trim().length >= 5
+        };
+    }
+
+    function runValidationTests() {
+        const testCases = [
+            {
+                name: "Valid form",
+                input: {
+                    name: "Ashna",
+                    email: "ashna@example.com",
+                    subject: "Project",
+                    message: "Hello there"
+                },
+                expected: true
+            },
+            {
+                name: "Empty name",
+                input: {
+                    name: "",
+                    email: "ashna@example.com",
+                    subject: "Project",
+                    message: "Hello there"
+                },
+                expected: false
+            },
+            {
+                name: "Invalid email",
+                input: {
+                    name: "Ashna",
+                    email: "ashna@",
+                    subject: "Project",
+                    message: "Hello there"
+                },
+                expected: false
+            },
+            {
+                name: "Empty subject",
+                input: {
+                    name: "Ashna",
+                    email: "ashna@example.com",
+                    subject: "",
+                    message: "Hello there"
+                },
+                expected: false
+            },
+            {
+                name: "Short message",
+                input: {
+                    name: "Ashna",
+                    email: "ashna@example.com",
+                    subject: "Project",
+                    message: "Hi"
+                },
+                expected: false
+            }
+        ];
+
+        const tbody = document.getElementById("testTable");
+        tbody.replaceChildren();
+
+        let passed = 0;
+
+        testCases.forEach(test => {
+            const result = validateContact(test.input);
+            const actual = Object.values(result).every(Boolean);
+            const success = actual === test.expected;
+
+            if (success) passed++;
+
+            const row = document.createElement("tr");
+            const values = [
+                test.name,
+                JSON.stringify(test.input),
+                test.expected ? "Valid" : "Invalid",
+                success ? "PASS" : "FAIL"
+            ];
+
+            values.forEach((value, index) => {
+                const cell = document.createElement("td");
+                cell.textContent = value;
+                if (index === 3) {
+                    cell.className = success ? "pass" : "fail";
+                }
+                row.appendChild(cell);
+            });
+
+            tbody.appendChild(row);
+        });
+
+        document.getElementById("testSummary").textContent =
+            passed + " out of " + testCases.length + " test cases passed.";
+    }
+
+    // ASSIGNMENT 44: TO-DO APP
+    let tasks = [
+        { id: 1, text: "Complete HTML assignment", completed: false },
+        { id: 2, text: "Practice JavaScript", completed: true }
+    ];
+
+    let currentFilter = "all";
+    let editingTaskId = null;
+
+    function displayTasks() {
+        const taskList = document.getElementById("taskList");
+        taskList.replaceChildren();
+
+        let filteredTasks = tasks.filter(task => {
+            if (currentFilter === "pending") return !task.completed;
+            if (currentFilter === "completed") return task.completed;
+            return true;
+        });
+
+        if (filteredTasks.length === 0) {
+            taskList.textContent = "No tasks found.";
+        }
+
+        filteredTasks.forEach(task => {
+            const item = document.createElement("div");
+            item.className = "list-item";
+
+            const details = document.createElement("div");
+            details.className = "task-details";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = task.completed;
+            checkbox.setAttribute("aria-label", "Mark task completed");
+            checkbox.addEventListener("change", () => {
+                task.completed = checkbox.checked;
+                displayTasks();
+            });
+
+            const title = document.createElement("span");
+            title.textContent = task.text;
+            if (task.completed) title.className = "completed";
+
+            details.append(checkbox, title);
+
+            const actions = document.createElement("div");
+            actions.className = "task-actions";
+
+            const editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.addEventListener("click", () => editTask(task.id));
+
+            const deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.className = "delete-btn";
+            deleteButton.addEventListener("click", () => deleteTask(task.id));
+
+            actions.append(editButton, deleteButton);
+            item.append(details, actions);
+            taskList.appendChild(item);
+        });
+
+        document.getElementById("totalTasks").textContent = tasks.length;
+        document.getElementById("completedTasks").textContent =
+            tasks.filter(t => t.completed).length;
+        document.getElementById("pendingTasks").textContent =
+            tasks.filter(t => !t.completed).length;
+
+        document.getElementById("taskCount").textContent =
+            "Showing " + filteredTasks.length + " task(s)";
+    }
+
+    document.getElementById("todoForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const input = document.getElementById("taskInput");
+        const text = input.value.trim();
+
+        if (!text) return;
+
+        if (editingTaskId !== null) {
+            const task = tasks.find(t => t.id === editingTaskId);
+            if (task) task.text = text;
+            cancelTaskEdit();
+        } else {
+            tasks.push({
+                id: Date.now(),
+                text: text,
+                completed: false
+            });
+        }
+
+        input.value = "";
+        displayTasks();
+    });
+
+    function editTask(id) {
+        const task = tasks.find(t => t.id === id);
+        if (!task) return;
+
+        editingTaskId = id;
+        document.getElementById("taskInput").value = task.text;
+        document.getElementById("taskSubmit").textContent = "Update Task";
+        document.getElementById("cancelEdit").hidden = false;
+        document.getElementById("taskInput").focus();
+    }
+
+    function cancelTaskEdit() {
+        editingTaskId = null;
+        document.getElementById("taskInput").value = "";
+        document.getElementById("taskSubmit").textContent = "Add Task";
+        document.getElementById("cancelEdit").hidden = true;
+    }
+
+    function deleteTask(id) {
+        tasks = tasks.filter(task => task.id !== id);
+
+        if (editingTaskId === id) cancelTaskEdit();
+
+        displayTasks();
+    }
+
+    function filterTasks(filter) {
+        currentFilter = filter;
+        displayTasks();
+    }
+
+    // INITIAL SETUP
+    displayBooks();
+    displayTasks();
+
+</script>
+
+
+</body>
+</html>
