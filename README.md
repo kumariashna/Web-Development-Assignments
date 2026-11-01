@@ -90,6 +90,19 @@ Technologies Used
 - CSS3
 - JavaScript
 
+Assignment 11: Dynamic UI, Forms & To-Do App (Questions 41–44)
+
+- Dynamic Reading List Interface
+- Contact Form with Submission Summary
+- Form Validation Test Matrix
+- To-Do App with Add, Edit, Complete, Filter and Delete Features
+
+Technologies Used
+
+- HTML5
+- CSS3
+- JavaScript
+
 Purpose
 
 To practice web development concepts and maintain my regular class assignments in one GitHub repository.
