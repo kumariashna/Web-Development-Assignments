@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Profile Management System</title>
+    <link rel="stylesheet" href="Assignment_10.css">
+</head>
+<body>
+
+<header>
+    <h1>Interactive Profile Management System</h1>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('profile')">My Profile</button>
+        <button onclick="showPage('edit')">Edit Profile</button>
+        <button onclick="showPage('events')">Event Map</button>
+        <button onclick="showPage('cards')">Profile Cards</button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+        <h2>Welcome to My Profile System</h2>
+        <p>Manage your profile and explore interactive features.</p>
+
+        <div class="card-container">
+            <div class="card">
+               
+                <p>Safe Profile Content Updater</p>
+                <button onclick="showPage('profile')">Explore</button>
+            </div>
+
+            <div class="card">
+               <p>Accessible Interactive Profile</p>
+                <button onclick="showPage('profile')">Explore</button>
+            </div>
+
+            <div class="card">
+               
+                <p>Profile Form and Event Map</p>
+                <button onclick="showPage('edit')">Explore</button>
+            </div>
+
+            <div class="card">
+               
+                <p>Reusable Profile Card Rendering</p>
+                <button onclick="showPage('cards')">Explore</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFILE PAGE -->
+    <section id="profile" class="page">
+        <h2>My Profile</h2>
+        <p>View and update your profile information.</p>
+
+        <div class="profile-card">
+            <div class="avatar" id="avatar">AK</div>
+            <h2 id="profileName">Ashna Kumari</h2>
+            <p id="profileCourse">BCA Artificial Intelligence</p>
+            <p id="profileEmail">ashna@example.com</p>
+            <p id="profileBio">Welcome to my profile!</p>
+
+            <div class="status-area">
+                <span id="profileStatus" class="status active-status"
+                    role="status" aria-live="polite">
+                    Active
+                </span>
+                <button id="statusButton" aria-pressed="true"
+                    onclick="toggleStatus()">
+                    Set Inactive
+                </button>
+            </div>
+
+            <button onclick="showPage('edit')">Edit Profile</button>
+        </div>
+
+        <div class="panel">
+            <h3>Profile Content Updater</h3>
+            <p>Update your profile description safely using textContent.</p>
+            <input type="text" id="bioInput"
+                placeholder="Enter a new profile description">
+            <button onclick="updateBio()">Update Description</button>
+            <p id="updateMessage" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <!-- EDIT PROFILE PAGE -->
+    <section id="edit" class="page">
+        <h2>Edit Profile</h2>
+        <p>Enter your details and submit the form.</p>
+
+        <div class="panel">
+            <form id="profileForm">
+                <label for="nameInput">Full Name</label>
+                <input type="text" id="nameInput"
+                    placeholder="Enter your name" required>
+
+                <label for="courseInput">Course</label>
+                <input type="text" id="courseInput"
+                    placeholder="Enter your course" required>
+
+                <label for="emailInput">Email Address</label>
+                <input type="email" id="emailInput"
+                    placeholder="Enter your email" required>
+
+                <label for="descriptionInput">About Me</label>
+                <textarea id="descriptionInput"
+                    placeholder="Write something about yourself"
+                    rows="4" required></textarea>
+
+                <button type="submit">Save Profile</button>
+                <button type="reset" class="secondary">Reset Form</button>
+            </form>
+
+            <p id="formMessage" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <!-- EVENT MAP PAGE -->
+    <section id="events" class="page">
+        <h2>Event Map</h2>
+        <p>Understand the events used in this interactive profile.</p>
+
+        <div class="panel">
+            <h3>Event Map Details</h3>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Element</th>
+                            <th>Event</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Profile Form</td>
+                            <td>Submit</td>
+                            <td>Updates profile information</td>
+                        </tr>
+                        <tr>
+                            <td>Bio Button</td>
+                            <td>Click</td>
+                            <td>Updates profile description</td>
+                        </tr>
+                        <tr>
+                            <td>Status Button</td>
+                            <td>Click</td>
+                            <td>Toggles active/inactive state</td>
+                        </tr>
+                        <tr>
+                            <td>Search Input</td>
+                            <td>Input</td>
+                            <td>Filters profile cards</td>
+                        </tr>
+                        <tr>
+                            <td>Navigation Buttons</td>
+                            <td>Click</td>
+                            <td>Changes visible section</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel">
+            <h3>Try an Event</h3>
+            <button onclick="showEventMessage('Click event executed successfully!')">
+                Test Click Event
+            </button>
+            <p id="eventMessage" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+    <!-- PROFILE CARDS PAGE -->
+    <section id="cards" class="page">
+        <h2>Profile Cards</h2>
+        <p>Reusable cards generated using a JavaScript function.</p>
+
+        <div class="search-area">
+            <input type="text" id="cardSearch"
+                placeholder="Search profile by name...">
+        </div>
+
+        <div id="cardContainer" class="card-container"></div>
+
+        <div class="panel">
+            <h3>Add New Profile Card</h3>
+            <form id="cardForm">
+                <label for="cardName">Name</label>
+                <input type="text" id="cardName"
+                    placeholder="Enter name" required>
+
+                <label for="cardCourse">Course</label>
+                <input type="text" id="cardCourse"
+                    placeholder="Enter course" required>
+
+                <label for="cardEmail">Email</label>
+                <input type="email" id="cardEmail"
+                    placeholder="Enter email" required>
+
+                <button type="submit">Add Profile Card</button>
+            </form>
+            <p id="cardMessage" role="status" aria-live="polite"></p>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Interactive Profile Management System | Assignments 37–40</p>
+</footer>
+
+<script>
+    // PROFILE DATA
+    const profile = {
+        name: "Ashna Kumari",
+        course: "BCA Artificial Intelligence",
+        email: "ashna@example.com",
+        bio: "Welcome to my profile!",
+        active: true
+    };
+
+    // SAMPLE PROFILE DATA FOR CARDS
+    let profiles = [
+        {
+            name: "Ashna Kumari",
+            course: "BCA Artificial Intelligence",
+            email: "ashna@example.com"
+        },
+        {
+            name: "Rahul Kumar",
+            course: "BCA Computer Science",
+            email: "rahul@example.com"
+        },
+        {
+            name: "Priya Sharma",
+            course: "BCA Data Science",
+            email: "priya@example.com"
+        }
+    ];
+
+    // PAGE NAVIGATION
+    function showPage(pageId) {
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+        window.scrollTo(0, 0);
+    }
+
+    // ASSIGNMENT 37: SAFE PROFILE CONTENT UPDATE
+    function updateBio() {
+        const newBio = document.getElementById("bioInput").value.trim();
+
+        if (newBio === "") {
+            document.getElementById("updateMessage").textContent =
+                "Please enter a description.";
+            return;
+        }
+
+        profile.bio = newBio;
+
+        // textContent safely treats input as text, not HTML
+        document.getElementById("profileBio").textContent = profile.bio;
+
+        document.getElementById("updateMessage").textContent =
+            "Profile description updated successfully!";
+
+        document.getElementById("bioInput").value = "";
+    }
+
+    // ASSIGNMENT 38: ACCESSIBLE PROFILE STATE
+    function toggleStatus() {
+        profile.active = !profile.active;
+
+        const status = document.getElementById("profileStatus");
+        const button = document.getElementById("statusButton");
+
+        if (profile.active) {
+            status.textContent = "Active";
+            status.className = "status active-status";
+            button.textContent = "Set Inactive";
+            button.setAttribute("aria-pressed", "true");
+        } else {
+            status.textContent = "Inactive";
+            status.className = "status inactive-status";
+            button.textContent = "Set Active";
+            button.setAttribute("aria-pressed", "false");
+        }
+    }
+
+    // ASSIGNMENT 39: PROFILE FORM AND EVENTS
+    document.getElementById("profileForm").addEventListener("submit",
+        function(event) {
+            event.preventDefault();
+
+            profile.name = document.getElementById("nameInput").value.trim();
+            profile.course = document.getElementById("courseInput").value.trim();
+            profile.email = document.getElementById("emailInput").value.trim();
+            profile.bio = document.getElementById("descriptionInput").value.trim();
+
+            updateProfileDisplay();
+
+            document.getElementById("formMessage").textContent =
+                "Profile saved successfully!";
+
+            document.getElementById("profileForm").reset();
+        }
+    );
+
+    function updateProfileDisplay() {
+        document.getElementById("profileName").textContent = profile.name;
+        document.getElementById("profileCourse").textContent = profile.course;
+        document.getElementById("profileEmail").textContent = profile.email;
+        document.getElementById("profileBio").textContent = profile.bio;
+
+        document.getElementById("avatar").textContent =
+            profile.name.split(" ")
+                .map(word => word.charAt(0))
+                .slice(0, 2)
+                .join("")
+                .toUpperCase();
+
+        document.getElementById("formMessage").textContent =
+            "Profile information updated.";
+    }
+
+    function showEventMessage(message) {
+        document.getElementById("eventMessage").textContent = message;
+    }
+
+    // ASSIGNMENT 40: REUSABLE CARD-RENDERING FUNCTION
+    function renderCard(person) {
+        const card = document.createElement("div");
+        card.className = "profile-item";
+
+        const heading = document.createElement("h3");
+        heading.textContent = person.name;
+
+        const course = document.createElement("p");
+        course.textContent = "Course: " + person.course;
+
+        const email = document.createElement("p");
+        email.textContent = "Email: " + person.email;
+
+        card.appendChild(heading);
+        card.appendChild(course);
+        card.appendChild(email);
+
+        return card;
+    }
+
+    function displayCards(list = profiles) {
+        const container = document.getElementById("cardContainer");
+        container.replaceChildren();
+
+        if (list.length === 0) {
+            const message = document.createElement("p");
+            message.textContent = "No profiles found.";
+            container.appendChild(message);
+            return;
+        }
+
+        list.forEach(person => {
+            container.appendChild(renderCard(person));
+        });
+    }
+
+    // ADD NEW PROFILE CARD
+    document.getElementById("cardForm").addEventListener("submit",
+        function(event) {
+            event.preventDefault();
+
+            const newProfile = {
+                name: document.getElementById("cardName").value.trim(),
+                course: document.getElementById("cardCourse").value.trim(),
+                email: document.getElementById("cardEmail").value.trim()
+            };
+
+            profiles.push(newProfile);
+            displayCards();
+
+            document.getElementById("cardMessage").textContent =
+                "New profile card added successfully!";
+
+            this.reset();
+        }
+    );
+
+    // SEARCH PROFILE CARDS
+    document.getElementById("cardSearch").addEventListener("input",
+        function() {
+            const searchValue = this.value.toLowerCase();
+
+            const filteredProfiles = profiles.filter(person =>
+                person.name.toLowerCase().includes(searchValue)
+            );
+
+            displayCards(filteredProfiles);
+        }
+    );
+
+    // INITIAL SETUP
+    updateProfileDisplay();
+    displayCards();
+</script>
+
+</body>
+</html>

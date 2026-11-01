@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* HEADER */
+header {
+    background: #142333;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    background: #087eaf;
+    color: white;
+    border: none;
+    padding: 11px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #055b80;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #f0a500;
+    outline-offset: 3px;
+}
+
+/* MAIN CONTENT */
+main {
+    max-width: 1100px;
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+.page h2 {
+    color: #142333;
+    margin-bottom: 10px;
+}
+
+.page > p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* HOME CARDS */
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 10px;
+    border-top: 5px solid #087eaf;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+    color: #142333;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #666;
+    margin-bottom: 18px;
+}
+
+/* PANELS */
+.panel {
+    background: white;
+    padding: 25px;
+    margin: 25px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.07);
+}
+
+.panel h3 {
+    color: #142333;
+    margin-bottom: 15px;
+}
+
+/* PROFILE */
+.profile-card {
+    background: white;
+    max-width: 500px;
+    margin: 25px auto;
+    padding: 30px;
+    text-align: center;
+    border-radius: 12px;
+    border-top: 5px solid #087eaf;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.avatar {
+    width: 85px;
+    height: 85px;
+    background: #087eaf;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 27px;
+    font-weight: bold;
+    margin: 0 auto 15px;
+}
+
+.profile-card h2 {
+    margin-bottom: 8px;
+}
+
+.profile-card p {
+    margin: 8px 0;
+    color: #666;
+    overflow-wrap: anywhere;
+}
+
+.status-area {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.status {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.active-status {
+    background: #d8f5e2;
+    color: #147a3c;
+}
+
+.inactive-status {
+    background: #ffe0e0;
+    color: #bd2525;
+}
+
+/* FORMS */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.secondary {
+    background: #697784;
+}
+
+.secondary:hover {
+    background: #4b5965;
+}
+
+/* EVENT MAP TABLE */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    min-width: 500px;
+}
+
+th,
+td {
+    padding: 13px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #087eaf;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f0f5f8;
+}
+
+/* PROFILE ITEMS */
+.search-area {
+    margin: 20px 0;
+}
+
+.profile-item {
+    background: white;
+    padding: 22px;
+    border-radius: 9px;
+    border-left: 5px solid #087eaf;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+}
+
+.profile-item h3 {
+    color: #087eaf;
+    margin-bottom: 10px;
+}
+
+.profile-item p {
+    margin: 6px 0;
+    overflow-wrap: anywhere;
+}
+
+/* MESSAGES */
+#updateMessage,
+#formMessage,
+#cardMessage,
+#eventMessage {
+    margin-top: 15px;
+    color: #168342;
+    font-weight: bold;
+}
+
+/* FOOTER */
+footer {
+    background: #142333;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 50px;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 22px;
+    }
+
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+
+    nav button {
+        padding: 9px 12px;
+        font-size: 13px;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 0 12px;
+    }
+
+    .panel {
+        padding: 16px;
+    }
+}

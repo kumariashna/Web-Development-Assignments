@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON & DOM Interactive Toolkit</title>
+    <link rel="stylesheet" href="Assignment_8.css">
+</head>
+<body>
+
+<header>
+    <h1>JSON & DOM Interactive Toolkit</h1>
+    <nav>
+        <button onclick="showPage('home')">Home</button>
+        <button onclick="showPage('a33')">Catalogue</button>
+        <button onclick="showPage('a34')">Utilities & Tests</button>
+        <button onclick="showPage('a35')">DOM Relationships</button>
+        <button onclick="showPage('a36')">Element Selection</button>
+    </nav>
+</header>
+
+<main>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+        <h2>Welcome to My Assignments</h2>
+        <p>Select an assignment to explore.</p>
+
+        <div class="card-container">
+            <div class="card">
+               
+                <p>Create and Validate a Sample Catalogue JSON File</p>
+                <button onclick="showPage('a33')">Open Assignment</button>
+            </div>
+
+            <div class="card">
+               
+                <p>Catalogue Data, Utilities and Test Scenarios</p>
+                <button onclick="showPage('a34')">Open Assignment</button>
+            </div>
+
+            <div class="card">
+               
+                <p>Label Node Relationships in an HTML Document</p>
+                <button onclick="showPage('a35')">Open Assignment</button>
+            </div>
+
+            <div class="card">
+                
+                <p>Complete an Element Selection Challenge Sheet</p>
+                <button onclick="showPage('a36')">Open Assignment</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 33 -->
+    <section id="a33" class="page">
+        <h2>Assignment 33: Create and Validate Catalogue JSON</h2>
+        <p>View the sample catalogue data and validate its JSON format.</p>
+
+        <div class="panel">
+            <h3>Sample Catalogue Data</h3>
+            <pre id="jsonOutput"></pre>
+
+            <button onclick="validateJSON()">Validate JSON</button>
+            <button onclick="formatJSON()">Format JSON</button>
+            <p id="jsonMessage" class="message"></p>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 34 -->
+    <section id="a34" class="page">
+        <h2>Assignment 34: Catalogue Utilities & Test Scenarios</h2>
+        <p>Search, filter and sort catalogue products.</p>
+
+        <div class="panel">
+            <h3>Product Catalogue</h3>
+
+            <input type="text" id="searchInput"
+                placeholder="Search product by name..."
+                oninput="displayProducts()">
+
+            <select id="categoryFilter" onchange="displayProducts()">
+                <option value="All">All Categories</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Accessories">Accessories</option>
+                <option value="Furniture">Furniture</option>
+            </select>
+
+            <select id="sortOrder" onchange="displayProducts()">
+                <option value="default">Default Order</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+
+            <div id="productList" class="product-grid"></div>
+            <p id="productCount"></p>
+        </div>
+
+        <div class="panel">
+            <h3>Test Scenarios</h3>
+            <button onclick="runTests()">Run Test Cases</button>
+            <div id="testResults"></div>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 35 -->
+    <section id="a35" class="page">
+        <h2>Assignment 35: DOM Node Relationships</h2>
+        <p>Explore parent, child and sibling relationships in HTML.</p>
+
+        <div class="panel">
+            <div id="domParent" class="dom-box">
+                <h3 id="domHeading">DOM Parent Element</h3>
+                <p id="domParagraph">This is the first child paragraph.</p>
+                <button id="domButton">Sample Button</button>
+                <p id="domLast">This is the last child paragraph.</p>
+            </div>
+
+            <h3>Select an element</h3>
+            <select id="domSelector">
+                <option value="domHeading">Heading</option>
+                <option value="domParagraph">First Paragraph</option>
+                <option value="domButton">Button</option>
+                <option value="domLast">Last Paragraph</option>
+            </select>
+
+            <button onclick="inspectDOM()">Explore Relationships</button>
+            <div id="domResult" class="result"></div>
+        </div>
+    </section>
+
+    <!-- ASSIGNMENT 36 -->
+    <section id="a36" class="page">
+        <h2>Assignment 36: DOM Element Selection</h2>
+        <p>Practice different JavaScript element selection methods.</p>
+
+        <div class="panel">
+            <h3>Sample Elements</h3>
+            <p id="sampleId">Element selected using ID.</p>
+            <p class="sampleClass">Element selected using Class.</p>
+            <p class="sampleClass">Another element with the same class.</p>
+            <p class="sampleTag">Element selected using Tag Name.</p>
+
+            <button class="actionButton">First Action Button</button>
+            <button class="actionButton">Second Action Button</button>
+
+            <h3>Choose Selection Method</h3>
+            <select id="selectionMethod">
+                <option value="id">getElementById()</option>
+                <option value="class">getElementsByClassName()</option>
+                <option value="tag">getElementsByTagName()</option>
+                <option value="query">querySelector()</option>
+                <option value="all">querySelectorAll()</option>
+            </select>
+
+            <button onclick="selectElements()">Select Elements</button>
+            <div id="selectionResult" class="result"></div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>JavaScript Assignments 33–36 | HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+    // JSON DATA FOR ASSIGNMENT 33 AND 34
+    const catalogueJSON = `[
+        {
+            "id": 1,
+            "name": "Laptop",
+            "category": "Electronics",
+            "price": 55000,
+            "stock": 10
+        },
+        {
+            "id": 2,
+            "name": "Smartphone",
+            "category": "Electronics",
+            "price": 25000,
+            "stock": 15
+        },
+        {
+            "id": 3,
+            "name": "Headphones",
+            "category": "Accessories",
+            "price": 1500,
+            "stock": 20
+        },
+        {
+            "id": 4,
+            "name": "Keyboard",
+            "category": "Accessories",
+            "price": 1200,
+            "stock": 12
+        },
+        {
+            "id": 5,
+            "name": "Office Chair",
+            "category": "Furniture",
+            "price": 4500,
+            "stock": 8
+        }
+    ]`;
+
+    let catalogue = JSON.parse(catalogueJSON);
+
+    // PAGE NAVIGATION
+    function showPage(pageId) {
+        document.querySelectorAll(".page").forEach(page => {
+            page.classList.remove("active");
+        });
+
+        document.getElementById(pageId).classList.add("active");
+        window.scrollTo(0, 0);
+    }
+
+    // ASSIGNMENT 33: JSON VALIDATION
+    function validateJSON() {
+        try {
+            JSON.parse(catalogueJSON);
+            document.getElementById("jsonMessage").textContent =
+                "Success! Valid JSON data.";
+            document.getElementById("jsonMessage").className =
+                "message success";
+        } catch (error) {
+            document.getElementById("jsonMessage").textContent =
+                "Invalid JSON: " + error.message;
+            document.getElementById("jsonMessage").className =
+                "message error";
+        }
+    }
+
+    function formatJSON() {
+        const formatted = JSON.stringify(
+            JSON.parse(catalogueJSON), null, 4
+        );
+        document.getElementById("jsonOutput").textContent = formatted;
+    }
+
+    // ASSIGNMENT 34: CATALOGUE UTILITIES
+    function displayProducts() {
+        const search = document.getElementById("searchInput")
+            .value.toLowerCase();
+
+        const category = document.getElementById("categoryFilter").value;
+        const sort = document.getElementById("sortOrder").value;
+
+        let filtered = catalogue.filter(product => {
+            const matchesName = product.name.toLowerCase().includes(search);
+            const matchesCategory =
+                category === "All" || product.category === category;
+
+            return matchesName && matchesCategory;
+        });
+
+        if (sort === "low") {
+            filtered.sort((a, b) => a.price - b.price);
+        } else if (sort === "high") {
+            filtered.sort((a, b) => b.price - a.price);
+        }
+
+        const productList = document.getElementById("productList");
+        productList.innerHTML = "";
+
+        if (filtered.length === 0) {
+            productList.innerHTML = "<p>No products found.</p>";
+        }
+
+        filtered.forEach(product => {
+            productList.innerHTML += `
+                <div class="product-card">
+                    <h3>${product.name}</h3>
+                    <p>Category: ${product.category}</p>
+                    <p>Price: ₹${product.price.toLocaleString("en-IN")}</p>
+                    <p>Stock: ${product.stock}</p>
+                </div>
+            `;
+        });
+
+        document.getElementById("productCount").textContent =
+            "Total Products Found: " + filtered.length;
+    }
+
+    function runTests() {
+        const results = [
+            {
+                name: "JSON parsing test",
+                passed: Array.isArray(JSON.parse(catalogueJSON))
+            },
+            {
+                name: "Catalogue data test",
+                passed: catalogue.length === 5
+            },
+            {
+                name: "Product name test",
+                passed: catalogue[0].name === "Laptop"
+            },
+            {
+                name: "Price validation test",
+                passed: catalogue.every(p => p.price > 0)
+            },
+            {
+                name: "Stock validation test",
+                passed: catalogue.every(p => p.stock >= 0)
+            }
+        ];
+
+        document.getElementById("testResults").innerHTML =
+            results.map(test => `
+                <p class="${test.passed ? 'success' : 'error'}">
+                    ${test.passed ? '✓ PASS' : '✗ FAIL'} - ${test.name}
+                </p>
+            `).join("");
+    }
+
+    // ASSIGNMENT 35: DOM NODE RELATIONSHIPS
+    function inspectDOM() {
+        const selectedId = document.getElementById("domSelector").value;
+        const element = document.getElementById(selectedId);
+
+        const parent = element.parentElement;
+        const previous = element.previousElementSibling;
+        const next = element.nextElementSibling;
+
+        document.getElementById("domResult").innerHTML = `
+            <h3>DOM Relationship Details</h3>
+            <p><strong>Selected Element:</strong> ${element.tagName}</p>
+            <p><strong>Parent Element:</strong> ${parent.tagName}</p>
+            <p><strong>Number of Child Elements:</strong> ${parent.children.length}</p>
+            <p><strong>Previous Sibling:</strong> ${previous ? previous.tagName : "None"}</p>
+            <p><strong>Next Sibling:</strong> ${next ? next.tagName : "None"}</p>
+        `;
+
+        element.classList.add("highlight");
+        setTimeout(() => element.classList.remove("highlight"), 1500);
+    }
+
+    // ASSIGNMENT 36: ELEMENT SELECTION
+    function selectElements() {
+        const method = document.getElementById("selectionMethod").value;
+        let selected;
+        let description = "";
+
+        if (method === "id") {
+            selected = document.getElementById("sampleId");
+            description = "Selected using getElementById()";
+        } else if (method === "class") {
+            selected = document.getElementsByClassName("sampleClass");
+            description = "Selected using getElementsByClassName()";
+        } else if (method === "tag") {
+            selected = document.getElementsByTagName("p");
+            description = "Selected using getElementsByTagName()";
+        } else if (method === "query") {
+            selected = document.querySelector(".sampleClass");
+            description = "Selected using querySelector()";
+        } else {
+            selected = document.querySelectorAll(".actionButton");
+            description = "Selected using querySelectorAll()";
+        }
+
+        let output = "";
+
+        if (selected instanceof Element) {
+            selected.classList.add("highlight");
+            output = `<p>${selected.outerHTML.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>`;
+        } else {
+            output = `<p>Total Elements Selected: ${selected.length}</p>`;
+            selected.forEach(element => {
+                element.classList.add("highlight");
+                output += `<p>${element.tagName}: ${element.textContent}</p>`;
+            });
+        }
+
+        document.getElementById("selectionResult").innerHTML =
+            `<h3>${description}</h3>${output}`;
+
+        setTimeout(() => {
+            document.querySelectorAll(".highlight").forEach(element => {
+                element.classList.remove("highlight");
+            });
+        }, 1800);
+    }
+
+    // INITIAL PAGE SETUP
+    document.getElementById("jsonOutput").textContent = catalogueJSON;
+    displayProducts();
+</script>
+
+</body>
+</html>
