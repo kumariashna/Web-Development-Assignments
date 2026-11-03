@@ -91,7 +91,7 @@ Assignment 11: Dynamic UI, Forms & To-Do App (Questions 41–44)
 - Form Validation Test Matrix
 - To-Do App with Add, Edit, Complete, Filter and Delete Features
 
-  Assignment 12: Browser Storage & Persistent To-Do App (Questions 45–49)
+Assignment 12: Browser Storage & Persistent To-Do App (Questions 45–49)
 
 - localStorage vs sessionStorage Comparison
 - Persistent Settings Panel
@@ -99,14 +99,10 @@ Assignment 11: Dynamic UI, Forms & To-Do App (Questions 41–44)
 - Load, Update, Save & Render Lifecycle
 - Persistent To-Do App with Testing Checklist
 
-Purpose: To understand browser storage, data persistence, reusable functions and dynamic task management.
-
 Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 
-Purpose
-
-To practice web development concepts and maintain my regular class assignments in one GitHub repository.
+Purpose:To practice web development concepts and maintain my regular class assignments in one GitHub repository.
