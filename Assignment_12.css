@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    color: #333;
+}
+
+header, footer {
+    background: #142333;
+    color: white;
+    text-align: center;
+    padding: 22px;
+}
+
+nav {
+    margin-top: 15px;
+}
+
+button {
+    background: #087eaf;
+    color: white;
+    border: 0;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #055b80;
+}
+
+main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 15px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #ccc;
+}
+
+input, select {
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    background: #eef4f8;
+    border-radius: 5px;
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
+
+label {
+    display: block;
+    margin: 12px 0;
+}
+
+.dark {
+    background: #202a35;
+    color: white;
+}
+
+.dark .card {
+    background: #354657;
+    color: white;
+}
+
+footer {
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    nav button {
+        padding: 8px;
+    }
+
+    .task {
+        flex-wrap: wrap;
+    }
+}

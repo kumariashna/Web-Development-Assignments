@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage & To-Do Manager</title>
+    <link rel="stylesheet" href="Assignment_12.css">
+</head>
+<body>
+
+<header>
+    <h1>Storage & To-Do Manager</h1>
+    <nav>
+        <button onclick="show('home')">Home</button>
+        <button onclick="show('storage')">Storage</button>
+        <button onclick="show('settings')">Settings</button>
+        <button onclick="show('todo')">To-Do App</button>
+        <button onclick="show('testing')">Testing</button>
+    </nav>
+</header>
+
+<main>
+    <section id="home" class="page active">
+        <h2>Welcome!</h2>
+        <p>Manage your settings and daily tasks.</p>
+        <div class="cards">
+            <div class="card"> Storage Comparison</div>
+            <div class="card">Persistent Settings</div>
+            <div class="card">Storage Helpers</div>
+            <div class="card">-Do App & Testing</div>
+        </div>
+    </section>
+
+    <section id="storage" class="page">
+        <h2>Storage Comparison</h2>
+        <div class="card">
+            <h3>localStorage</h3>
+            <input id="localInput" placeholder="Enter value">
+            <button onclick="saveLocal()">Save</button>
+            <p id="localOutput"></p>
+        </div>
+        <div class="card">
+            <h3>sessionStorage</h3>
+            <input id="sessionInput" placeholder="Enter value">
+            <button onclick="saveSession()">Save</button>
+            <p id="sessionOutput"></p>
+        </div>
+        <p>localStorage keeps data after closing the browser. sessionStorage keeps data for the current tab session.</p>
+    </section>
+
+    <section id="settings" class="page">
+        <h2>Persistent Settings</h2>
+        <div class="card">
+            <input id="name" placeholder="Enter your name">
+            <select id="theme">
+                <option value="light">Light Theme</option>
+                <option value="dark">Dark Theme</option>
+            </select>
+            <button onclick="saveSettings()">Save Settings</button>
+            <p id="settingsOutput"></p>
+        </div>
+    </section>
+
+    <section id="todo" class="page">
+        <h2>Persistent To-Do App</h2>
+        <div class="card">
+            <input id="taskInput" placeholder="Enter a task">
+            <button onclick="addTask()">Add Task</button>
+            <p id="taskMessage"></p>
+        </div>
+
+        <div class="card">
+            <h3>Task Summary</h3>
+            <p id="summary"></p>
+            <button onclick="filterTasks('all')">All</button>
+            <button onclick="filterTasks('pending')">Pending</button>
+            <button onclick="filterTasks('completed')">Completed</button>
+            <div id="taskList"></div>
+        </div>
+    </section>
+
+    <section id="testing" class="page">
+        <h2>Testing Checklist</h2>
+        <div class="card" id="checks">
+            <label><input type="checkbox"> Save settings</label>
+            <label><input type="checkbox"> Load settings after refresh</label>
+            <label><input type="checkbox"> Save localStorage data</label>
+            <label><input type="checkbox"> Save sessionStorage data</label>
+            <label><input type="checkbox"> Add a task</label>
+            <label><input type="checkbox"> Complete a task</label>
+            <label><input type="checkbox"> Delete a task</label>
+            <label><input type="checkbox"> Filter tasks</label>
+            <p id="progress">0 tests completed</p>
+        </div>
+    </section>
+</main>
+
+<footer>Assignments 45–49 | JavaScript Project</footer>
+
+<script>
+    // Assignment 47: Storage Helper Functions
+    const saveData = (key, value) =>
+        localStorage.setItem(key, JSON.stringify(value));
+
+    const getData = (key, fallback) => {
+        try {
+            return JSON.parse(localStorage.getItem(key)) ?? fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
+    // Page Navigation
+    function show(id) {
+        document.querySelectorAll(".page").forEach(p =>
+            p.classList.remove("active"));
+        document.getElementById(id).classList.add("active");
+    }
+
+    // Assignment 45: Storage Comparison
+    function saveLocal() {
+        localStorage.setItem("demo", localInput.value);
+        localOutput.textContent = "Saved: " + localStorage.getItem("demo");
+    }
+
+    function saveSession() {
+        sessionStorage.setItem("demo", sessionInput.value);
+        sessionOutput.textContent = "Saved: " + sessionStorage.getItem("demo");
+    }
+
+    // Assignment 46: Persistent Settings
+    let settings = getData("settings", { name: "", theme: "light" });
+
+    function loadSettings() {
+        name.value = settings.name;
+        theme.value = settings.theme;
+        applyTheme();
+    }
+
+    function saveSettings() {
+        settings = { name: name.value, theme: theme.value };
+        saveData("settings", settings);
+        applyTheme();
+        settingsOutput.textContent = "Settings saved!";
+    }
+
+    function applyTheme() {
+        document.body.classList.toggle("dark", settings.theme === "dark");
+    }
+
+    // Assignment 48–49: Persistent To-Do App
+    let tasks = getData("tasks", []);
+    let filter = "all";
+
+    function addTask() {
+        const value = taskInput.value.trim();
+        if (!value) {
+            taskMessage.textContent = "Enter a task first!";
+            return;
+        }
+        tasks.push({ text: value, done: false });
+        taskInput.value = "";
+        saveTasks();
+    }
+
+    function saveTasks() {
+        saveData("tasks", tasks);
+        renderTasks();
+    }
+
+    function filterTasks(type) {
+        filter = type;
+        renderTasks();
+    }
+
+    function renderTasks() {
+        taskList.innerHTML = "";
+        const visible = tasks.filter(t =>
+            filter === "all" ||
+            (filter === "completed" ? t.done : !t.done));
+
+        visible.forEach((task) => {
+            const item = document.createElement("div");
+            item.className = "task";
+
+            const label = document.createElement("span");
+            label.textContent = task.text;
+            if (task.done) label.classList.add("done");
+
+            const complete = document.createElement("button");
+            complete.textContent = task.done ? "Undo" : "Done";
+            complete.onclick = () => {
+                task.done = !task.done;
+                saveTasks();
+            };
+
+            const remove = document.createElement("button");
+            remove.textContent = "Delete";
+            remove.onclick = () => {
+                tasks = tasks.filter(t => t !== task);
+                saveTasks();
+            };
+
+            item.append(label, complete, remove);
+            taskList.appendChild(item);
+        });
+
+        summary.textContent =
+            `Total: ${tasks.length} | Completed: ${tasks.filter(t => t.done).length} | Pending: ${tasks.filter(t => !t.done).length}`;
+    }
+
+    // Assignment 49: Testing Checklist
+    checks.addEventListener("change", () => {
+        const boxes = checks.querySelectorAll("input[type=checkbox]");
+        const count = [...boxes].filter(b => b.checked).length;
+        progress.textContent = `${count} of ${boxes.length} tests completed`;
+    });
+
+    // Initial Load
+    loadSettings();
+    renderTasks();
+</script>
+
+</body>
+</html>
