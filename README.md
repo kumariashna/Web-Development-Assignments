@@ -84,18 +84,22 @@ Assignment 10: DOM Manipulation & Events (Questions 37–40)
 - Interactive Profile Form with Event Map
 - Reusable Card Rendering Function
 
-Technologies Used
-
-- HTML5
-- CSS3
-- JavaScript
-
 Assignment 11: Dynamic UI, Forms & To-Do App (Questions 41–44)
 
 - Dynamic Reading List Interface
 - Contact Form with Submission Summary
 - Form Validation Test Matrix
 - To-Do App with Add, Edit, Complete, Filter and Delete Features
+
+  Assignment 12: Browser Storage & Persistent To-Do App (Questions 45–49)
+
+- localStorage vs sessionStorage Comparison
+- Persistent Settings Panel
+- Reusable Storage Helper Functions
+- Load, Update, Save & Render Lifecycle
+- Persistent To-Do App with Testing Checklist
+
+Purpose: To understand browser storage, data persistence, reusable functions and dynamic task management.
 
 Technologies Used
 
